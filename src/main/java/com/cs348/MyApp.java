@@ -7,5 +7,10 @@ public class MyApp {
         for (int i=0; i<10; i++) {
             System.out.println(i);
         }
+        hello();
+    }
+
+    public static void hello() {
+        System.out.println("Hello");
     }
 }
