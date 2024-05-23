@@ -6,7 +6,7 @@ The purpose of this sample database is to provide a basic example of how to set 
 
 ### Database Details
 
-- **Database Name:** sonoo
+- **Database Name:** sonoo (as example connection to database to examine the connection stability) 
 
 ### Java Application
 
