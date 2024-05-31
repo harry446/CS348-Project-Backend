@@ -1,2 +1,13 @@
-package src.main.java.com.cs348.backendservice;public class Application {
+package com.cs348.backendservice;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+
 }
+
