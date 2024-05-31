@@ -15,10 +15,6 @@ public class HealthCheck {
         ZonedDateTime utcNow = ZonedDateTime.now(ZoneId.of("UTC"));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
         String formattedDateTime = utcNow.format(formatter);
-
-
-
-
-        return "Service is up and running! " + formattedDateTime;
+        return "CS348 service is up and running! " + formattedDateTime;
     }
 }
