@@ -2,20 +2,21 @@
 
 ## Description
 
-The purpose of this sample database is to provide a basic example of how to set up and interact with a MySQL database using Java. 
+This backend service is used to interact with the MySQL database.
 
-### Database Details
+## Prerequisites
 
-- **Database Name:** sonoo (as example connection to database to examine the connection stability) 
-
-### Java Application
-
-A Java application (`MyApp.java`) is included to demonstrate how to connect to the `sonoo` database. The application uses the MySQL Connector/J JDBC driver to establish the connection and execute SQL queries.
-
-### Prerequisites
-
-- MySQL Server
-- MySQL Connector/J JDBC Driver
-https://downloads.mysql.com/archives/c-j/
+- MySQL Database Server running on local device
 - Java Development Kit (JDK)
 - IntelliJ IDEA or any other Java IDE
+- Maven or Maven Wrapper installed on local device
+- Ensure that port 8080 isn't in use
+
+## Usage
+If maven is installed on local device 
+1. ```mvn clean install```
+2. ```mvn spring-boot:run``` or run the application directly in IDE
+
+### Verification
+To verify that the server is up and running. Open `http://localhost:8080/healthCheck` on a browser. Should be able to see something like "CS348 service is up and running! 2024-05-31 23:29:13 UTC"
+
