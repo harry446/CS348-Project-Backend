@@ -3,6 +3,24 @@ import java.sql.*;
 
 public class DatabaseOperations {
 
+    public static void connectionToDatabase(String url, String username, String password) {
+        System.out.println("Connecting to database ...");
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance(); // Ensure the driver class is loaded
+            try (Connection connection = DriverManager.getConnection(url, username, password)) {
+                System.out.println("Database connected!");
+            }
+        } catch (ClassNotFoundException e) {
+            throw new IllegalStateException("Cannot find the driver in the classpath!", e);
+        } catch (SQLException e) {
+            throw new IllegalStateException("Cannot connect the database!", e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void insertRow(String url, String username, String password,
                                  String tableName, String name, String description,
                                  String note, double latitude, double longitude) {
