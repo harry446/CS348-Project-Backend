@@ -6,7 +6,7 @@ public class DatabaseOperations {
     public static void connectionToDatabase(String url, String username, String password) {
         System.out.println("Connecting to database ...");
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance(); // Ensure the driver class is loaded
+            Class.forName("com.mysql.cj.jdbc.Driver"); // Ensure the driver class is loaded
             try (Connection connection = DriverManager.getConnection(url, username, password)) {
                 System.out.println("Database connected!");
             }
@@ -14,10 +14,6 @@ public class DatabaseOperations {
             throw new IllegalStateException("Cannot find the driver in the classpath!", e);
         } catch (SQLException e) {
             throw new IllegalStateException("Cannot connect the database!", e);
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -77,7 +73,7 @@ public class DatabaseOperations {
 
             if (status != 0) {
                 System.out.println("Record WAS DELETED");
-                System.out.println(getRowCount(connection, tableName));
+                //System.out.println(getRowCount(connection, tableName));
             } else {
                 System.out.println("No matching record found to delete.");
             }
