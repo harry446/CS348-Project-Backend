@@ -21,10 +21,11 @@ If maven is installed on local device
 To verify that the server is up and running. Open `http://localhost:8080/healthCheck` on a browser. Should be able to see something like "CS348 service is up and running! 2024-05-31 23:29:13 UTC"
 
 ### Interaction with Database
-Ensure Maven is rebuild after clean install
+Ensure Maven is rebuild after clean install.
 Configure the file application.properties based on individual database settings, update the following field:
-1. spring.datasource.url : add the name of database in MySQLWorkbench after "3306/", i.e jdbc:mysql://localhost:3306/sonoo
-2. spring.datasource.username : by convention should be "root"
-3. spring.datasource.password : personal password
+1. ```spring.datasource.url``` : add the name of database in MySQLWorkbench after "3306/", i.e ```jdbc:mysql://localhost:3306/sonoo```
+2. ```spring.datasource.username``` : by convention should be "root"
+3. ```spring.datasource.password ```: personal password
+Internal server error implies wrong configuration on this file
   
 
