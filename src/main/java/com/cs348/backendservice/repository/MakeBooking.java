@@ -43,7 +43,7 @@ public static String password;
                     String setClause = "booking_num = " + bookingNum;
                     DatabaseOperations.updateRow(url, username, password, "users", setClause, condition);
                 }
-
+                System.out.printf("%s User booking num incremented to %s\n", uid, bookingNumStr);
             }
 
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
