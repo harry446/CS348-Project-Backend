@@ -6,6 +6,7 @@ CREATE TABLE `users` (
     `phone` CHAR(10),
     `identity` CHAR(10) NOT NULL,
     `booking_num` INT NOT NULL DEFAULT 0,
+    `is_accessible` BOOL NOT NULL,
     PRIMARY KEY (`uid`),
     CONSTRAINT `c_bookings` CHECK (`booking_num` <= 3),
     CONSTRAINT `c_id_type` CHECK (`identity` IN ("admin", "staff", "visitor", "student"))
@@ -14,11 +15,10 @@ CREATE TABLE `users` (
 CREATE TABLE `permit_holders` (
     `uid` INT NOT NULL,
     `type` CHAR(20) NOT NULL,
-    `start_time` DATETIME NOT NULL,
-    `end_time` DATETIME NOT NULL,
+    `expiry_date` DATE NOT NULL,
     PRIMARY KEY (`uid`),
     FOREIGN KEY (`uid`) REFERENCES `users`(`uid`),
-    CONSTRAINT `c_type` CHECK (`type` IN ("accessible", "staff", "student"))
+    CONSTRAINT `c_type` CHECK (`type` IN ("staff", "student"))
 );
 
 CREATE TABLE `lots` (
@@ -38,8 +38,8 @@ CREATE TABLE `spots` (
     `parking_type` CHAR(20) NOT NULL,
     `latitude` VARCHAR(50) NOT NULL,
     `longitude` VARCHAR(50) NOT NULL,
-    `max_stay` FLOAT,
-    `price` FLOAT,
+    `max_stay` INT,
+    `price` FLOAT NOT NULL,
     PRIMARY KEY (`lid`, `sid`),
     FOREIGN KEY (`lid`) REFERENCES `lots`(`lid`),
     CONSTRAINT `c_park_type` CHECK (`parking_type` IN ("permit", "pay", "accessible", "free"))
@@ -52,7 +52,6 @@ CREATE TABLE `bookings` (
     `sid` INT NOT NULL,
     `create_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     `start_time` DATETIME NOT NULL,
-    `length_of_stay` FLOAT NOT NULL,
     `end_time` DATETIME NOT NULL,
     `price` FLOAT,
     `status` BOOL NOT NULL,
