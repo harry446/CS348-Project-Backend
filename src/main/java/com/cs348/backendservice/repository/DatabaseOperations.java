@@ -1,5 +1,10 @@
 package com.cs348.backendservice.repository;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 public class DatabaseOperations {
 
@@ -196,5 +201,76 @@ public class DatabaseOperations {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void updateRow(String url, String username, String password,
+                                 String tableName, String setClause, String condition) {
+        Connection connection = null;
+        PreparedStatement ps = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            connection = DriverManager.getConnection(url, username, password);
+
+            String query = String.format("UPDATE %s SET %s WHERE %s;", tableName, setClause, condition);
+            ps = connection.prepareStatement(query);
+
+            int status = ps.executeUpdate();
+
+            if (status != 0) {
+                System.out.println("Record WAS UPDATED");
+            } else {
+                System.out.println("No matching record found to update.");
+            }
+
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (ps != null) ps.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static List<Map<String, Object>> listTable(String url, String username, String password, String tableName) {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Map<String, Object>> rows = new ArrayList<>();
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            connection = DriverManager.getConnection(url, username, password);
+
+            String query = String.format("SELECT * FROM %s;", tableName);
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            int columnCount = rs.getMetaData().getColumnCount();
+
+            while (rs.next()) {
+                Map<String, Object> row = new HashMap<>();
+                for (int i = 1; i <= columnCount; i++) {
+                    row.put(rs.getMetaData().getColumnName(i), rs.getObject(i));
+                }
+                rows.add(row);
+            }
+
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return rows;
     }
 }
