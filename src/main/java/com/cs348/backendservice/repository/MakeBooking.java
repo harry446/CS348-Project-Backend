@@ -49,12 +49,7 @@ public static String password;
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (ps != null) ps.close();
-                if (connection != null) connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DatabaseOperations.closeConnection(connection, ps, null);
         }
     }
 
