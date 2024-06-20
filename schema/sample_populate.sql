@@ -54,16 +54,20 @@ VALUES (4,  1, 'pay', 43.46836, -80.53989, 1.5, 3);
 
 -- full booking for one person
 INSERT INTO bookings (bid, uid, lid, sid, create_time, start_time, end_time, price, status)
-VALUES (00001, 00003, 1, 1, CURRENT_TIMESTAMP, '2024-06-20 15:30:00', '2024-06-20 17:00:00', 0, 1);
+VALUES (00001, 00003, 1, 1, '2024-06-14 12:32:21', '2024-06-20 15:30:00', '2024-06-20 17:00:00', 0, 1);
 INSERT INTO bookings (bid, uid, lid, sid, create_time, start_time, end_time, price, status)
-VALUES (00002, 00003, 1, 1, CURRENT_TIMESTAMP, '2024-06-18 9:00:00', '2024-06-20 14:00:00', 0, 1);
+VALUES (00002, 00003, 1, 1, '2024-06-14 12:32:57', '2024-06-18 9:00:00', '2024-06-20 14:00:00', 0, 1);
 INSERT INTO bookings (bid, uid, lid, sid, create_time, start_time, end_time, price, status)
-VALUES (00003, 00003, 2, 1, CURRENT_TIMESTAMP, '2024-06-15 15:30:00', '2024-06-15 16:00:00', 0, 1);
+VALUES (00003, 00003, 2, 1, '2024-06-14 12:35:00', '2024-06-15 15:30:00', '2024-06-15 16:00:00', 0, 1);
+-- update corresponding user's booking_num to match insertion
+UPDATE users SET booking_num = 3 WHERE uid = 00003;
+
 -- one cancelled booking, two valid for one person
 INSERT INTO bookings (bid, uid, lid, sid, create_time, start_time, end_time, price, status)
-VALUES (00004, 00004, 1, 2, CURRENT_TIMESTAMP, '2024-06-15 15:30:00', '2024-06-15 18:30:00', 15, 1);
+VALUES (00004, 00004, 1, 2, '2024-06-14 17:35:00', '2024-06-15 15:30:00', '2024-06-15 18:30:00', 15, 1);
 INSERT INTO bookings (bid, uid, lid, sid, create_time, start_time, end_time, price, status)
-VALUES (00005, 00004, 3, 1, CURRENT_TIMESTAMP, '2024-06-15 15:30:00', '2024-06-15 16:30:00', 0, 1);
+VALUES (00005, 00004, 3, 1, '2024-06-14 18:35:40', '2024-06-15 15:30:00', '2024-06-15 16:30:00', 0, 1);
 INSERT INTO bookings (bid, uid, lid, sid, create_time, start_time, end_time, price, status)
-VALUES (00006, 00004, 4, 1, CURRENT_TIMESTAMP, '2024-06-15 15:30:00', '2024-06-15 16:30:00', 3, 0);
+VALUES (00006, 00004, 4, 1, '2024-06-14 18:35:57', '2024-06-15 15:30:00', '2024-06-15 16:30:00', 3, 0);
+UPDATE users SET booking_num = 2 WHERE uid = 00004;
 
