@@ -6,9 +6,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MakingBookingRequest {
-    private String uid;
-    private String lid;
-    private String sid;
+    private int uid;
+    private int lid;
+    private int sid;
     private String startYear;
     private String startMonth;
     private String startDate;

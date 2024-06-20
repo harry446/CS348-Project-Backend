@@ -25,7 +25,7 @@ public class MakeBookingController {
         String end_time = convertToTime(bookingRequest.getEndYear(), bookingRequest.getEndMonth(), bookingRequest.getEndDate(),
                 bookingRequest.getEndHour(), bookingRequest.getEndMinute());
 
-        makeBooking.insertRow(Integer.parseInt(bookingRequest.getUid()), Integer.parseInt(bookingRequest.getLid()), Integer.parseInt(bookingRequest.getSid()),
+        makeBooking.insertRow(bookingRequest.getUid(), bookingRequest.getLid(), bookingRequest.getSid(),
                 start_time, end_time, PRICE);
 
         return new ResponseEntity("Booking created for user " + bookingRequest.getUid() + " at lot " + bookingRequest.getLid() +
