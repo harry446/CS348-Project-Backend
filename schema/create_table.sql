@@ -8,7 +8,7 @@ CREATE TABLE `users` (
     `booking_num` INT NOT NULL DEFAULT 0,
     `is_accessible` BOOL NOT NULL,
     PRIMARY KEY (`uid`),
-    CONSTRAINT `c_bookings` CHECK (`booking_num` <= 3),
+    CONSTRAINT `c_bookings` CHECK (`booking_num` <= 3 AND `booking_num` >= 0),
     CONSTRAINT `c_id_type` CHECK (`identity` IN ("admin", "staff", "visitor", "student"))
 );
 
