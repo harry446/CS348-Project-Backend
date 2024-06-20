@@ -35,6 +35,9 @@ This section provides details on the supported API endpoints and features, inclu
 
 These APIs can be tested using tools like `Postman` or `Curl`.
 
+After launching the application, documentations can also be found here: `http://localhost:8080/swagger-ui.html
+`
+
 ### 1. Making a Booking
 Description: Create a new booking and update the `booking_num` in the users table to reflect the new booking count.
 
@@ -87,7 +90,7 @@ Content: "Booking canceled for user 2, with bid: 8
 
 ### 3. Retrieving Booking History
 - Endpoint: /bookingHistory
-- Method: GET
+- Method: POST
 - Description: Retrieve the booking history for a user, with options to sort the results by price in ascending or descending order.
 - Request Payload Example (without sorting):
 ```
