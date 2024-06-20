@@ -1,57 +1,64 @@
 package com.cs348.backendservice.repository;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import java.sql.*;
 
+@Component
 public class MakeBooking {
-public static String url;
-public static String username;
-public static String password;
+    @Value("${spring.datasource.url}")
+    private String url;
+    @Value("${spring.datasource.username}")
+    private String username;
+    @Value("${spring.datasource.password}")
+    private String password;
 
-    public static void insertRow(int bid, int uid, int lid, int sid, String create_time,
-                                 String start_time, String end_time, float price, boolean status) {
+    public void insertRow(int uid, int lid, int sid,
+                                 String start_time, String end_time, double price) {
 
         Connection connection = null;
         PreparedStatement ps = null;
 
+        System.out.println("url: " + url);
+        System.out.println("username: " + username);
+
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url, username, password);
+            connection.setAutoCommit(false); // Start transaction
 
-            String query = "INSERT INTO bookings (bid, uid, lid, sid, create_time, start_time, end_time, price, status) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
-            ps = connection.prepareStatement(query);
-            ps.setInt(1, bid);
-            ps.setInt(2, uid);
-            ps.setInt(3, lid);
-            ps.setInt(4, sid);
-            ps.setString(5, create_time);
-            ps.setString(6, start_time);
-            ps.setString(7, end_time);
-            ps.setFloat(8, price);
-            ps.setBoolean(9, status);
+            // Insert booking
+            String insertQuery = "INSERT INTO bookings (uid, lid, sid, start_time, end_time, price, status) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, 1);";
+            ps = connection.prepareStatement(insertQuery);
+            ps.setInt(1, uid);
+            ps.setInt(2, lid);
+            ps.setInt(3, sid);
+            ps.setString(4, start_time);
+            ps.setString(5, end_time);
+            ps.setDouble(6, price);
+            ps.executeUpdate();
 
-            int resultStatus = ps.executeUpdate();
+            // Update user booking number
+            String updateQuery = "UPDATE users SET booking_num = booking_num + 1 WHERE uid = ?";
+            ps = connection.prepareStatement(updateQuery);
+            ps.setInt(1, uid);
+            ps.executeUpdate();
 
-            if (resultStatus != 0) {
-                System.out.println("Database was Connected");
-                System.out.println("Record WAS INSERTED");
+            connection.commit(); // Commit transaction
+            System.out.println("Booking created with uid: " + uid);
 
-                String condition = "uid = " + uid;
-                String bookingNumStr = DatabaseOperations.fetchField(url, username, password, "users", "booking_num", condition);
-                if (bookingNumStr != null) {
-                    int bookingNum = Integer.parseInt(bookingNumStr);
-                    bookingNum += 1;
-                    String setClause = "booking_num = " + bookingNum;
-                    DatabaseOperations.updateRow(url, username, password, "users", setClause, condition);
-                }
-                System.out.printf("%s User booking num incremented to %s\n", uid, bookingNumStr);
-            }
-
-        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
+            try {
+                if (connection != null) connection.rollback(); // Roll back transaction on error
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         } finally {
-            DatabaseOperations.closeConnection(connection, ps, null);
+            if (ps != null) try { ps.close(); } catch (SQLException e) { e.printStackTrace(); }
+            if (connection != null) try { connection.close(); } catch (SQLException e) { e.printStackTrace(); }
         }
     }
-
 
 }
