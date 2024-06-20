@@ -23,8 +23,8 @@ To verify that the server is up and running. Open `http://localhost:8080/healthC
 ### Interaction with Database
 Ensure Maven is rebuild after clean install.
 <br> Configure the file application.properties based on individual database settings, update the following field:
-1. ```spring.datasource.url``` : add the name of database in MySQLWorkbench after "3306/", i.e ```jdbc:mysql://localhost:3306/sonoo```
-2. ```spring.datasource.username``` : by convention should be "root"
+1. ```spring.datasource.url``` : add the name of database in MySQLWorkbench after "3306/", i.e ```jdbc:mysql://localhost:3306/my_database_name```
+2. ```spring.datasource.username``` : username, i.e ```root```
 3. ```spring.datasource.password ```: personal password
 <br> Internal server error implies wrong configuration on this file
   
