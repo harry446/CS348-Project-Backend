@@ -1,16 +1,14 @@
 package com.cs348.backendservice.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
-public class BookingRequest {
+public class MakingBookingRequest {
     private String uid;
     private String lid;
+    private String sid;
     private String startYear;
     private String startMonth;
     private String startDate;
