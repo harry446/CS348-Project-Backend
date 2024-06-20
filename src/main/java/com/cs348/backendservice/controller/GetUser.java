@@ -17,7 +17,7 @@ public class GetUser {
     private GetUsers userRepository;
 
     @GetMapping("/getUsers")
-    public ResponseEntity<List<User>> getUser() {
+    public ResponseEntity<List<UserResponse>> getUser() {
         return new ResponseEntity(userRepository.findAll(), HttpStatus.OK);  // SELECT * FROM users
     }
 
