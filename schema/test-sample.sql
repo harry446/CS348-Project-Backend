@@ -1,3 +1,6 @@
+-- just for testing purpose, revert the changes feature 1 test brings
+DELETE FROM bookings WHERE bid = 7;
+
 -- feature 1: make a booking
 INSERT INTO bookings (bid, uid, lid, sid, create_time, start_time, end_time, price, status) VALUES (7, 4, 1, 3, "2024-06-14 22:49:21", "2024-06-20 15:30:00", "2024-06-20 17:00:00", 0, 1);
 
@@ -27,5 +30,4 @@ WHERE b.uid = 00004 AND b.lid=l.lid AND b.lid=s.lid AND b.sid=s.sid
 SELECT *
 FROM temp
 ORDER BY temp.price DESC;
-
 
