@@ -1,4 +1,4 @@
--- just for testing purpose, revert the changes feature 1 test brings
+-- just for testing purpose, revert the changes feature 1 test brings to avoid duplicate insertino
 DELETE FROM bookings WHERE bid = 7;
 
 -- feature 1: make a booking
@@ -7,13 +7,14 @@ INSERT INTO bookings (bid, uid, lid, sid, create_time, start_time, end_time, pri
 UPDATE users SET booking_num = booking_num + 1 WHERE uid = 4;
 
 -- feature 2: cancel a booking
-UPDATE bookings SET status = 0 WHERE uid = 4 AND bid = 1;
+-- assuming user with uid=4 made a valid booking with bid 7
+UPDATE bookings SET status = 0 WHERE uid = 4 AND bid = 7;
 UPDATE users SET booking_num = booking_num -  1 WHERE uid = 4;
 
 -- feature 3: list booking history
 SELECT l.area, l.address, l.lot_name, s.parking_type,
 b.create_time, b.start_time, b.end_time, b.price, 
-CASE WHEN (b.status=1 AND b.end_time < CURRENT_TIMESTAMP) THEN "expired" ELSE
+CASE WHEN (b.status=1 AND b.end_time < "2024-06-16 22:49:21") THEN "expired" ELSE
 (CASE WHEN b.status=1 THEN "booked" ELSE "cancelled" END) END AS status 
 FROM bookings b,  lots l, spots s 
 WHERE b.uid = 00004 AND b.lid=l.lid AND b.lid=s.lid AND b.sid=s.sid;
@@ -22,7 +23,7 @@ WHERE b.uid = 00004 AND b.lid=l.lid AND b.lid=s.lid AND b.sid=s.sid;
 WITH temp AS ( 
 SELECT l.area, l.address, l.lot_name, s.parking_type,
 b.create_time, b.start_time, b.end_time, b.price, 
-CASE WHEN (b.status=1 AND b.end_time < CURRENT_TIMESTAMP) THEN "expired" ELSE
+CASE WHEN (b.status=1 AND b.end_time < "2024-06-14 22:49:21") THEN "expired" ELSE
 (CASE WHEN b.status=1 THEN "booked" ELSE "cancelled" END) END AS status 
 FROM bookings b,  lots l, spots s 
 WHERE b.uid = 00004 AND b.lid=l.lid AND b.lid=s.lid AND b.sid=s.sid
