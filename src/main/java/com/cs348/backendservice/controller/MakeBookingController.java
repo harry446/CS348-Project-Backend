@@ -12,10 +12,7 @@ public class MakeBookingController {
 
     final double PRICE = 1.50;      // TODO: get price according to sid
     @PostMapping("/makeBooking")
-    public ResponseEntity makeBooking(@RequestBody MakingBookingRequest bookingRequest) {
-        System.out.println("START HOUR: " + bookingRequest.getStartHour());
-        System.out.println("END HOUR: " + bookingRequest.getEndHour());
-
+    public ResponseEntity makeBookingHandler(@RequestBody MakingBookingRequest bookingRequest) {
         String start_time = convertToTime(bookingRequest.getStartYear(), bookingRequest.getStartMonth(), bookingRequest.getStartDate(),
                 bookingRequest.getStartHour(), bookingRequest.getStartMinute());
 
@@ -36,7 +33,7 @@ public class MakeBookingController {
 
     public static void makeBooking(int uid, int lid, int sid,
                                  String start_time, String end_time, double price, int status) {
-        System.out.println("hi");
+        System.out.println("make booking!");
         return;
     }
 }
