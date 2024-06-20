@@ -2,18 +2,11 @@ package com.cs348.backendservice.repository;
 
 import com.cs348.backendservice.constants.DatabaseConstants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import java.sql.*;
 
 @Component
 public class CancelBooking {
-//    @Value("${spring.datasource.url}")
-//    private String url;
-//    @Value("${spring.datasource.username}")
-//    private String username;
-//    @Value("${spring.datasource.password}")
-//    private String password;
 
     @Autowired
     private DatabaseConstants constant;
