@@ -147,7 +147,7 @@ Content:
 ```
 
 ### 4. List All Available Spot
-- Endpoint: /
+- Endpoint: http://localhost:8080/listavailablespots
 - Method: POST
 - Description: List all the available parking spot given the required input field
 - Request Payload Example (JSON):
