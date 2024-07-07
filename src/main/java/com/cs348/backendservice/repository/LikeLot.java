@@ -22,6 +22,7 @@ public class LikeLot {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             connection = DriverManager.getConnection(constant.url, constant.username, constant.password);
+            connection.setAutoCommit(false);
 
             // update the like num
             String updateLikeNumQuery = "UPDATE lots SET like_num = like_num+1 WHERE lid = ? " +
