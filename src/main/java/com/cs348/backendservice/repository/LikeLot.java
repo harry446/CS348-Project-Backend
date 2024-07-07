@@ -15,7 +15,7 @@ public class LikeLot {
     @Autowired
     private DatabaseConstants constant;
 
-    public void like(int lid, int bid, int uid) {
+    public void like(int lid, int uid) {
         Connection connection = null;
         PreparedStatement ps = null;
 
@@ -35,9 +35,10 @@ public class LikeLot {
 
             // update booking liked status
             int status = ps.executeUpdate();
-            String updateBookingQuery = "UPDATE bookings SET liked = True WHERE bid = ?;";
+            String updateBookingQuery = "UPDATE bookings SET liked = True WHERE uid=? AND lid = ? AND status = True AND end_time < CURRENT_TIMESTAMP;";
             ps = connection.prepareStatement(updateBookingQuery);
-            ps.setInt(1, bid);
+            ps.setInt(1, uid);
+            ps.setInt(2, lid);
             ps.executeUpdate();
 
             connection.commit(); // Commit transaction

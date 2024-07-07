@@ -23,14 +23,14 @@ public class LikeLotController {
             responses = {
                     @ApiResponse(responseCode = "200", description = "Liked successfully",
                             content = @Content(mediaType = "String",
-                                    examples = @ExampleObject(value = "Successfully increased like count of lot: 1, for booking: 3"))),
+                                    examples = @ExampleObject(value = "Successfully increased like count of lot: 1"))),
                     @ApiResponse(responseCode = "500", description = "Internal server error",
                             content = @Content(mediaType = "String"))
             })
-    public ResponseEntity<String> likeLotHandler(@RequestParam int lid, @RequestParam int bid, @RequestParam int uid) {
+    public ResponseEntity<String> likeLotHandler(@RequestParam int lid, @RequestParam int uid) {
         try {
-            lot.like(lid, bid, uid);
-            return new ResponseEntity("Successfully increased like count of lot: " + lid + ", for booking: " + bid, HttpStatus.OK);
+            lot.like(lid, uid);
+            return new ResponseEntity("Successfully increased like count of lot: " + lid, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
