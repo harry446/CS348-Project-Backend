@@ -250,7 +250,7 @@ uid: id of the user that is going to like a spot
 ```
 - Request Example
 ```
-http://localhost:8080/likespot?lid=2&bid=8&uid=4
+http://localhost:8080/likelot?lid=2&bid=8&uid=4
 ```
 
 - Request Response
