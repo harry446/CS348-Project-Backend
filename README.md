@@ -170,7 +170,7 @@ Content:
 ```
 - Success Response:
 ```
-Code: 200
+Code: 200 OK
 Content:
 {
   "lots": {
