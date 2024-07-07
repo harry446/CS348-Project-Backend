@@ -259,3 +259,27 @@ Code: 200 OK
 Content: Successfully increased like count of lot: 2, for booking: 8
 ```
 
+### 6. User Logging Verifications 
+- Endpoint: http://localhost:8080/login
+- Method: GET
+- Description: User logs into their account by providing username and password
+- Query Parameters
+```
+username: user's login username
+password: user's login password
+```
+- Request Example
+```
+http://localhost:8080/login?username= &password=
+```
+- Request Response
+```
+Code: 200 OK
+Content: Logged in successfully
+```
+Notice that different content maybe displayed based on the input field for username and password, this including
+```
+Username not found: username1
+Wrong username or password
+```
+
