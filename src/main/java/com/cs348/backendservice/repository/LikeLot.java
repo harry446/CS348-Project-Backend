@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 @Component
 
-public class LikedLot {
+public class LikeLot {
     @Autowired
     private DatabaseConstants constant;
 
@@ -26,7 +26,7 @@ public class LikedLot {
             // update the like num
             String updateLikeNumQuery = "UPDATE lots SET like_num = like_num+1 WHERE lid = ? " +
                     "AND lid IN (SELECT lid FROM Bookings WHERE uid = ? " +
-                    "AND status = True AND end_time < CURRENT_TIMESTAMP)\n";
+                    "AND status = True AND end_time < CURRENT_TIMESTAMP AND liked = False)\n";
             ps = connection.prepareStatement(updateLikeNumQuery);
             ps.setInt(1, lid);
             ps.setInt(2, uid);
