@@ -270,7 +270,7 @@ password: user's login password
 ```
 - Request Example
 ```
-http://localhost:8080/login?username= &password=
+http://localhost:8080/login?username=USERNAME&password=PASSWORD
 ```
 - Request Response
 ```
