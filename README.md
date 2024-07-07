@@ -35,6 +35,9 @@ This section provides details on the supported API endpoints and features, inclu
 
 These APIs can be tested using tools like `Postman` or `Curl`.
 
+After launching the application, documentations can also be found here: `http://localhost:8080/swagger-ui.html
+`
+
 ### 1. Making a Booking
 Description: Create a new booking and update the `booking_num` in the users table to reflect the new booking count.
 
@@ -87,7 +90,7 @@ Content: "Booking canceled for user 2, with bid: 8
 
 ### 3. Retrieving Booking History
 - Endpoint: /bookingHistory
-- Method: GET
+- Method: POST
 - Description: Retrieve the booking history for a user, with options to sort the results by price in ascending or descending order.
 - Request Payload Example (without sorting):
 ```
@@ -142,3 +145,117 @@ Content:
     }
 ]
 ```
+
+### 4. List All Available Spot
+- Endpoint: http://localhost:8080/listavailablespots
+- Method: POST
+- Description: List all the available parking spot given the required input field
+- Request Payload Example (JSON):
+```
+{
+  "uid": 12345,
+  "location": "MC",
+  "freeOnly": false,
+  "startYear": "2024",
+  "startMonth": "06",
+  "startDate": "14",
+  "startHour": "11",
+  "startMinute": "30",
+  "endYear": "2024",
+  "endMonth": "06",
+  "endDate": "14",
+  "endHour": "14",
+  "endMinute": "00"
+}
+```
+- Success Response:
+```
+Code: 200 OK
+Content:
+{
+  "lots": {
+    {
+      "lid": "0",
+      "likeNum": "20",
+      "spots": {
+        {
+          "sid": "0",
+          "price": "1.50",    (this is the unit price per 30 mins)
+          "parkingType": "visitor",
+          "isAvailable": true
+        },
+        {
+          "sid": "1",
+          "price": "1.50",
+          "parkingType": "visitor",
+          "isAvailable": true
+        },
+        {
+          "sid": "2",
+          "price": "1.50",
+          "parkingType": "accessible",
+          "isAvailable": false
+        },
+        {
+          "sid": "3",
+          "price": "0",
+          "parkingType": "permit",
+          "isAvailable": true
+        }
+      }
+    },
+    {
+      "lid": "37",
+      "likeNum": "30",
+      "spots": {
+        {
+          "sid": "0",
+          "price": "2.50",
+          "parkingType": "visitor",
+          "isAvailable": false
+        },
+        {
+          "sid": "1",
+          "price": "2.50",
+          "parkingType": "visitor",
+          "isAvailable": false
+        },
+        {
+          "sid": "2",
+          "price": "2.50",
+          "parkingType": "visitor",
+          "isAvailable": true
+        },
+        {
+          "sid": "3",
+          "price": "2.50",
+          "parkingType": "visitor",
+          "isAvailable": true
+        }
+      }
+    }
+  }
+}
+
+```
+### 5. Like a Parking Lot
+- Endpoint: http://localhost:8080/likeLot
+- Method: POST
+- Description: Users may choose to like the parking spot after they have visited the parking lot, this operation will cause the likenum of a spot to increase by 1 
+- Query Parameters 
+```
+lid: parking lot id that the user is intended to like for
+bid: id of the booking that the user intended to like for
+uid: id of the user that is going to like a spot
+```
+- Request Example
+```
+http://localhost:8080/likeLot?lid=2&bid=8&uid=4
+```
+
+- Request Response
+```
+Code: 200 OK
+Content: Successfully increased like count of lot: 2, for booking: 8
+```
+
