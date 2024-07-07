@@ -171,6 +171,7 @@ Content:
 - Success Response:
 ```
 Code: 200
+Content:
 {
   "lots": {
     {
