@@ -145,3 +145,96 @@ Content:
     }
 ]
 ```
+
+### 4 List All Available Spot
+- Endpoint: /
+- Method: GET
+- Description: List all the available parking spot given the required input field
+- Request Payload Example (JSON):
+```
+{
+  "uid": 12345,
+  "location": "MC",
+  "freeOnly": false,
+  "startYear": "2024",
+  "startMonth": "06",
+  "startDate": "14",
+  "startHour": "11",
+  "startMinute": "30",
+  "endYear": "2024",
+  "endMonth": "06",
+  "endDate": "14",
+  "endHour": "14",
+  "endMinute": "00"
+}
+```
+- Success Response:
+```
+Code: 200
+{
+  "lots": {
+    {
+      "lid": "0",
+      "likeNum": "20",
+      "spots": {
+        {
+          "sid": "0",
+          "price": "1.50",    (this is the unit price per 30 mins)
+          "parkingType": "visitor",
+          "isAvailable": true
+        },
+        {
+          "sid": "1",
+          "price": "1.50",
+          "parkingType": "visitor",
+          "isAvailable": true
+        },
+        {
+          "sid": "2",
+          "price": "1.50",
+          "parkingType": "accessible",
+          "isAvailable": false
+        },
+        {
+          "sid": "3",
+          "price": "0",
+          "parkingType": "permit",
+          "isAvailable": true
+        }
+      }
+    },
+    {
+      "lid": "37",
+      "likeNum": "30",
+      "spots": {
+        {
+          "sid": "0",
+          "price": "2.50",
+          "parkingType": "visitor",
+          "isAvailable": false
+        },
+        {
+          "sid": "1",
+          "price": "2.50",
+          "parkingType": "visitor",
+          "isAvailable": false
+        },
+        {
+          "sid": "2",
+          "price": "2.50",
+          "parkingType": "visitor",
+          "isAvailable": true
+        },
+        {
+          "sid": "3",
+          "price": "2.50",
+          "parkingType": "visitor",
+          "isAvailable": true
+        }
+      }
+    }
+  }
+}
+
+```
+
