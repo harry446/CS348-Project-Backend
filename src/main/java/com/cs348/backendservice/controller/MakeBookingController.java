@@ -2,6 +2,7 @@ package com.cs348.backendservice.controller;
 
 import com.cs348.backendservice.model.MakingBookingRequest;
 import com.cs348.backendservice.repository.MakeBooking;
+import com.cs348.backendservice.tools.Tools;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -22,6 +23,9 @@ public class MakeBookingController {
 
     @Autowired
     private MakeBooking makeBooking;
+
+    @Autowired
+    private Tools tools;
 
 
     @PostMapping("/makeBooking")
@@ -50,10 +54,10 @@ public class MakeBookingController {
                             content = @Content(mediaType ="String", examples = @ExampleObject(value = "Booking created for user 2 at lot 1 and spot 3. From 2024-06-14 10:30:00 to 2024-06-14 14:00:00"))),
             })
     public ResponseEntity<String> makeBookingHandler(@RequestBody MakingBookingRequest bookingRequest) {
-        String start_time = convertToTime(bookingRequest.getStartYear(), bookingRequest.getStartMonth(), bookingRequest.getStartDate(),
+        String start_time = tools.convertToTime(bookingRequest.getStartYear(), bookingRequest.getStartMonth(), bookingRequest.getStartDate(),
                 bookingRequest.getStartHour(), bookingRequest.getStartMinute());
 
-        String end_time = convertToTime(bookingRequest.getEndYear(), bookingRequest.getEndMonth(), bookingRequest.getEndDate(),
+        String end_time = tools.convertToTime(bookingRequest.getEndYear(), bookingRequest.getEndMonth(), bookingRequest.getEndDate(),
                 bookingRequest.getEndHour(), bookingRequest.getEndMinute());
 
         makeBooking.insertRow(bookingRequest.getUid(), bookingRequest.getLid(), bookingRequest.getSid(),
@@ -64,9 +68,6 @@ public class MakeBookingController {
                 , HttpStatus.OK);
     }
 
-    public String convertToTime(String startYear, String startMonth, String startDate, String startHour, String startMinute) {
-        return startYear + "-" + startMonth + "-" + startDate + " " + startHour + ":" + startMinute + ":00";
-    }
 }
 
 
