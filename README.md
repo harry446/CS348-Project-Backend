@@ -146,9 +146,9 @@ Content:
 ]
 ```
 
-### 4 List All Available Spot
+### 4. List All Available Spot
 - Endpoint: /
-- Method: GET
+- Method: POST
 - Description: List all the available parking spot given the required input field
 - Request Payload Example (JSON):
 ```
