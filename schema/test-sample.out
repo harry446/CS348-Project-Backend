@@ -1,10 +1,10 @@
-area	address	lot_name	parking_type	create_time	start_time	end_time	price	status
-UW	XXX	DC	pay	2024-06-14 17:35:00	2024-06-15 15:30:00	2024-06-15 18:30:00	15	expired
-UW	XXX	DWE	free	2024-06-14 18:35:40	2024-06-15 15:30:00	2024-06-15 16:30:00	0	expired
-UW	XXX	SCH	pay	2024-06-14 18:35:57	2024-06-15 15:30:00	2024-06-15 16:30:00	3	cancelled
-UW	XXX	DC	free	2024-06-14 22:49:21	2024-06-20 15:30:00	2024-06-20 17:00:00	0	cancelled
-area	address	lot_name	parking_type	create_time	start_time	end_time	price	status
-UW	XXX	DC	pay	2024-06-14 17:35:00	2024-06-15 15:30:00	2024-06-15 18:30:00	15	booked
-UW	XXX	SCH	pay	2024-06-14 18:35:57	2024-06-15 15:30:00	2024-06-15 16:30:00	3	cancelled
-UW	XXX	DWE	free	2024-06-14 18:35:40	2024-06-15 15:30:00	2024-06-15 16:30:00	0	booked
-UW	XXX	DC	free	2024-06-14 22:49:21	2024-06-20 15:30:00	2024-06-20 17:00:00	0	cancelled
+area	address	lot_name	parking_type	create_time	start_time	end_time	price	status	liked
+UW	XXX	DC	pay	2024-06-14 17:35:00	2024-06-15 15:30:00	2024-06-15 18:30:00	15	expired	0
+UW	XXX	DWE	free	2024-06-14 18:35:40	2024-06-15 15:30:00	2024-06-15 16:30:00	0	expired	0
+UW	XXX	SCH	pay	2024-06-14 18:35:57	2024-06-15 15:30:00	2024-06-15 16:30:00	3	cancelled	0
+UW	XXX	DC	free	2024-06-14 22:49:21	2024-06-20 15:30:00	2024-06-20 17:00:00	0	cancelled	0
+area	address	lot_name	parking_type	create_time	start_time	end_time	price	status	liked
+UW	XXX	DC	pay	2024-06-14 17:35:00	2024-06-15 15:30:00	2024-06-15 18:30:00	15	booked	0
+UW	XXX	SCH	pay	2024-06-14 18:35:57	2024-06-15 15:30:00	2024-06-15 16:30:00	3	cancelled	0
+UW	XXX	DWE	free	2024-06-14 18:35:40	2024-06-15 15:30:00	2024-06-15 16:30:00	0	booked	0
+UW	XXX	DC	free	2024-06-14 22:49:21	2024-06-20 15:30:00	2024-06-20 17:00:00	0	cancelled	0
