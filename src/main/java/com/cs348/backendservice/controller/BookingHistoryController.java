@@ -39,31 +39,7 @@ public class BookingHistoryController {
             responses = {
                     @ApiResponse(responseCode = "200", description = "Booking history retrieved successfully",
                             content = @Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = BookingHistoryResponse.class),
-                                    examples = @ExampleObject(value = "[\n" +
-                                    "    {\n" +
-                                    "        \"area\": \"UW\",\n" +
-                                    "        \"address\": \"XXX\",\n" +
-                                    "        \"lotName\": \"DC\",\n" +
-                                    "        \"parkingType\": \"pay\",\n" +
-                                    "        \"createTime\": \"2024-06-20T04:28:57.000+00:00\",\n" +
-                                    "        \"startTime\": \"2024-06-15T19:30:00.000+00:00\",\n" +
-                                    "        \"endTime\": \"2024-06-15T22:30:00.000+00:00\",\n" +
-                                    "        \"price\": 15.0,\n" +
-                                    "        \"status\": \"expired\"\n" +
-                                    "    },\n" +
-                                    "    {\n" +
-                                    "        \"area\": \"UW\",\n" +
-                                    "        \"address\": \"XXX\",\n" +
-                                    "        \"lotName\": \"SCH\",\n" +
-                                    "        \"parkingType\": \"pay\",\n" +
-                                    "        \"createTime\": \"2024-06-20T04:28:57.000+00:00\",\n" +
-                                    "        \"startTime\": \"2024-06-15T19:30:00.000+00:00\",\n" +
-                                    "        \"endTime\": \"2024-06-15T20:30:00.000+00:00\",\n" +
-                                    "        \"price\": 3.0,\n" +
-                                    "        \"status\": \"cancelled\"\n" +
-                                    "    }\n" +
-                                    "]"))),
+                                    schema = @Schema(implementation = BookingHistoryResponse.class))),
                     @ApiResponse(responseCode = "400", description = "Invalid request parameters")
             })
     public ResponseEntity<?> bookingHistoryHandler(@RequestBody BookingHistoryRequest historyRequest) {
