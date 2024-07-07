@@ -238,4 +238,24 @@ Content:
 }
 
 ```
+### 5. Like a Spot
+- Endpoint: http://localhost:8080/likespot
+- Method: POST
+- Description: Users may choose to like the parking spot after they have visited the parking lot, this operation will cause the likenum of a spot to increase by 1 
+- Query Parameters 
+```
+lid: parking lot id that the user is intended to like for
+bid: id of the booking that the user intended to like for
+uid: id of the user that is going to like a spot
+```
+- Request Example
+```
+http://localhost:8080/likespot?lid=2&bid=8&uid=4
+```
+
+- Request Response
+```
+Code: 200 OK
+Content: like_num updated successfully for lid: 2
+```
 
