@@ -1,0 +1,50 @@
+1,UW,200 University Ave W,DC,30,4
+2,UW,200 Columbia St W,OPT,30,3
+3,UW,200 University Ave W,DWE,20,2
+4,UW,200 University Ave W,SCH,10,0
+5,UW,200 University Ave W,MC,20,0
+6,UW,200 University Ave W,SLC,50,0
+7,UW,200 University Ave W,PAC,50,0
+8,UW,200 University Ave W,STC,10,0
+9,UW,200 University Ave W,NH,15,0
+10,UW,200 University Ave W,E7,40,0
+11,UW,200 University Ave W,M3,20,0
+12,UW,200 University Ave W,BMH,40,0
+13,UW,200 University Ave W,EXP,50,0
+14,UW,200 University Ave W,STJ ,40,0
+15,UW,240 Westmount Rd N,REN,20,0
+16,UW,200 University Ave W,HH,25,0
+17,UW,200 University Ave W,TC,30,0
+18,UW,200 University Ave W,DP,45,0
+19,UW,200 University Ave W,V1C,60,0
+20,UW,200 University Ave W,UWC,50,0
+21,UW,263 Phillip St,ECH,20,0
+22,UW,200 University Ave W,EC2,20,0
+23,UW,200 University Ave W,HS,40,0
+24,UW,200 University Ave W,MHR,20,0
+25,UW,200 University Ave W,ML,10,0
+26,UW,200 University Ave W,GSC,40,0
+27,UW,200 University Ave W,UNC,15,0
+28,UW,159 University Ave W,UWP,20,0
+29,UW,200 University Ave W,ERC,10,0
+30,CW,550 King St N,Galaxy Cinemas Waterloo,250,1037
+31,CW,555 Davenport Rd,Zehrs Conestoga,250,362
+32,CW,600 King St N,The Home Depot,200,1032
+33,CW,45 Erb St W,Waterloo Town Square (North),40,0
+34,CW,100 Regina St S,City Centre Lot,115,302
+35,CW,70 Caroline St S,Waterloo Town Square (South),200,407
+36,CW,31 Caroline St N,Perimeter Lot,50,502
+37,CW,20 Regina St S,Station Lot,50,103
+38,CW,82 Erb St,Museum Lot,100,301
+39,CW,165 Weber St S,Forbes Motors Chevrolet Buick GMC,150,1020
+40,CW,170 Weber St S,Carimex Auto Sales,150,400
+41,CW,70 Bridgeport Rd E,Walmart Supercentre,300,123
+42,CW,550 King St N,Conestoga Mall I,50,87
+43,CW,550 King St N,Conestoga Mall II,250,547
+44,CW,550 King St N,Conestoga Mall III,250,994
+45,CW,Bloomingdale,Elam Martin Farmstead at RIM Park,50,11
+46,CW,2001 University Ave E,RIM Park,250,1200
+47,CW,410 The Boardwalk,Milestones,150,303
+48,CW,35 Albert St,Library Lot,150,1310
+49,CW,Woolwich St N,Grey Silo Golf Club,55,80
+50,CW,10 Wills Way,Uptown Parkade,50,289
