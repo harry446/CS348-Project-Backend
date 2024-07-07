@@ -21,7 +21,7 @@ public class AvailableSpotService {
 
 
 
-        List<AvailableSpotResponse.ParkingSpot> spot = Arrays.asList(new AvailableSpotResponse.ParkingSpot("a", "b", "c", true));
+        List<AvailableSpotResponse.ParkingLot.ParkingSpot> spot = Arrays.asList(new AvailableSpotResponse.ParkingLot.ParkingSpot("a", "b", "c", true));
         List<AvailableSpotResponse.ParkingLot> lot = Arrays.asList(new AvailableSpotResponse.ParkingLot("lid", "likeNum", spot));
         return new AvailableSpotResponse(lot);
     }

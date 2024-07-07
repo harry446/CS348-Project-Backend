@@ -25,8 +25,8 @@ public class AvailableSpot {
             connection = DriverManager.getConnection(constant.url, constant.username, constant.password);
             connection.setAutoCommit(false); // Start transaction
 
-            String insertQuery = "SELECT booking_num FROM users WHERE uid = ?";
-            ps = connection.prepareStatement(insertQuery);
+            String query = "SELECT booking_num FROM users WHERE uid = ?";
+            ps = connection.prepareStatement(query);
             ps.setInt(1, uid);
 
             try (ResultSet rs = ps.executeQuery()) {
