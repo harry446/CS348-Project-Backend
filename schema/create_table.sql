@@ -1,6 +1,12 @@
+-- DROP TABLE bookings;
+-- DROP TABLE permit_holders;
+-- DROP TABLE spots;
+-- DROP TABLE users;
+-- DROP TABLE lots;
+
 CREATE TABLE `users` (
     `uid` INT NOT NULL AUTO_INCREMENT,
-    `username` VARCHAR(16) NOT NULL,
+    `username` VARCHAR(16) NOT NULL UNIQUE,
     `password` VARCHAR(16) NOT NULL,
     `email` VARCHAR(50) NOT NULL,
     `phone` CHAR(10),
@@ -38,7 +44,7 @@ CREATE TABLE `spots` (
     `parking_type` CHAR(20) NOT NULL,
     `latitude` VARCHAR(50) NOT NULL,
     `longitude` VARCHAR(50) NOT NULL,
-    `max_stay` INT,
+    `max_stay` FLOAT,
     `price` FLOAT NOT NULL,
     PRIMARY KEY (`lid`, `sid`),
     FOREIGN KEY (`lid`) REFERENCES `lots`(`lid`),
@@ -55,7 +61,9 @@ CREATE TABLE `bookings` (
     `end_time` DATETIME NOT NULL,
     `price` FLOAT,
     `status` BOOL NOT NULL,
+    `liked` BOOL DEFAULT False,
     PRIMARY KEY (`bid`),
     FOREIGN KEY (`uid`) REFERENCES `users`(`uid`),
     FOREIGN KEY (`lid`,`sid`) REFERENCES `spots`(`lid`,`sid`)
 );
+
