@@ -33,7 +33,7 @@ CREATE TABLE `lots` (
     `address` VARCHAR(64) NOT NULL,
     `lot_name` VARCHAR(50) NOT NULL,
     `capacity` INT NOT NULL,
-    `like_num` INT, 
+    `like_num` INT NOT NULL, 
     PRIMARY KEY (`lid`),
     CONSTRAINT `c_area` CHECK (`area` IN ("uw", "cw"))
 );
