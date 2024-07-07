@@ -270,12 +270,12 @@ password: user's login password
 ```
 - Request Example
 ```
-http://localhost:8080/login?username=USERNAME&password=PASSWORD
+[http://localhost:8080/login?username=USERNAME&password=PASSWORD](http://localhost:8080/login?username=admin01&password=iamadmin)
 ```
 - Request Response
 ```
 Code: 200 OK
-Content: Logged in successfully
+Content: password is correct
 ```
 Notice that different content maybe displayed based on the input field for username and password, this including
 ```
