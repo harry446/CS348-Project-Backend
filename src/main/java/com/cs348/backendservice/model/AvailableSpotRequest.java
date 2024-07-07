@@ -5,7 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-
 public class AvailableSpotRequest {
     private int uid;
     private String location;

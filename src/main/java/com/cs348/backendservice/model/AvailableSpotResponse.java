@@ -9,9 +9,11 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-
 public class AvailableSpotResponse {
 
+    @Getter
+    @Setter
+    @AllArgsConstructor
     public static class ParkingSpot {
         private String sid;
         private String price;
@@ -19,6 +21,9 @@ public class AvailableSpotResponse {
         private boolean isAvailable;
     }
 
+    @Getter
+    @Setter
+    @AllArgsConstructor
     public static class ParkingLot {
         private String lid;
         private String likeNum;
