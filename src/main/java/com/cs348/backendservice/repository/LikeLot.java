@@ -34,7 +34,6 @@ public class LikeLot {
             ps.executeUpdate();
 
             // update booking liked status
-            int status = ps.executeUpdate();
             String updateBookingQuery = "UPDATE bookings SET liked = True WHERE uid=? AND lid = ? AND status = True AND end_time < CURRENT_TIMESTAMP;";
             ps = connection.prepareStatement(updateBookingQuery);
             ps.setInt(1, uid);

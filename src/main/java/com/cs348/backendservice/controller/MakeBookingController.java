@@ -27,7 +27,6 @@ public class MakeBookingController {
     @Autowired
     private Tools tools;
 
-
     @PostMapping("/makeBooking")
     @Operation(summary = "Create a booking", description = "Make a booking and update the booking count in the users table.",
             requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Booking information needed to create a booking",

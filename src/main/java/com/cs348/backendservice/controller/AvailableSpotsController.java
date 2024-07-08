@@ -7,6 +7,7 @@ import com.cs348.backendservice.model.AvailableSpotResponse;
 import com.cs348.backendservice.model.BookingHistoryRequest;
 import com.cs348.backendservice.model.BookingHistoryResponse;
 import com.cs348.backendservice.service.AvailableSpotService;
+import com.cs348.backendservice.tools.Tools;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -23,6 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class AvailableSpotsController {
     @Autowired
     private AvailableSpotService availableSpotsService;
+
+    @Autowired
+    private Tools tools;
 
     @PostMapping("/listAvailableSpots")
     @Operation(summary = "Retrieve available spots", description = "Get available spots based on user requirements.",
@@ -55,8 +59,19 @@ public class AvailableSpotsController {
     public ResponseEntity<?> availableSpotsHandler(@RequestBody AvailableSpotRequest spotsRequest) {
 
         int uid = spotsRequest.getUid();
+        String location = spotsRequest.getLocation();
+        String startTime = tools.convertToTime(spotsRequest.getStartYear(), spotsRequest.getStartMonth(), spotsRequest.getStartDate(),
+                spotsRequest.getStartHour(), spotsRequest.getStartMinute());
+        String endTime = tools.convertToTime(spotsRequest.getEndYear(), spotsRequest.getEndMonth(), spotsRequest.getEndDate(),
+                spotsRequest.getEndHour(), spotsRequest.getEndMinute());
+        float duration = tools.convertDuration(spotsRequest.getStartYear(), spotsRequest.getStartMonth(), spotsRequest.getStartDate(),
+                spotsRequest.getStartHour(), spotsRequest.getStartMinute(),
+                spotsRequest.getEndYear(), spotsRequest.getEndMonth(), spotsRequest.getEndDate(),
+                spotsRequest.getEndHour(), spotsRequest.getEndMinute());
+        boolean isFreeOnly = spotsRequest.isFreeOnly();
+
         try {
-            AvailableSpotResponse res = availableSpotsService.listAvailableSpots(uid);
+            AvailableSpotResponse res = availableSpotsService.listAvailableSpots(uid, location, startTime, endTime, duration, isFreeOnly);
             return new ResponseEntity(res, HttpStatus.OK);
         } catch (UserNotFoundException notFoundException) {
             return new ResponseEntity(notFoundException.getMessage(), HttpStatus.NOT_FOUND);
