@@ -86,7 +86,7 @@ def generate_parking_spots(lots_df):
         # Add permit spots
         for _ in range(permit_spots):
             lat, lon = generate_random_lat_long(lat_long_range)
-            parking_spots.append([lid, spot_id, 'permit', lat, lon, None, 0])
+            parking_spots.append([lid, spot_id, 'permit', lat, lon, 'NULL', 0])
             spot_id += 1
         
         # Add free/pay spots
