@@ -20,4 +20,5 @@ LOAD DATA LOCAL INFILE '/path/to/your/allspots.txt'
 INTO TABLE spots
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
-(lid,sid,parking_type,latitude,longitude,max_stay,price);
+(lid,sid,parking_type,latitude,longitude,max_stay,price)
+SET max_stay = NULLIF(max_stay, 'NULL');
