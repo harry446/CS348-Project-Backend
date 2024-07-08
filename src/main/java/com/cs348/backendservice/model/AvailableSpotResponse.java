@@ -24,10 +24,10 @@ public class AvailableSpotResponse {
         @Schema(description = "Represents an individual parking spot within a lot")
         public static class ParkingSpot {
             @Schema(description = "Spot ID", example = "0")
-            private String sid;
+            private int sid;
 
             @Schema(description = "Price per 30 minutes", example = "1.50")
-            private String price;
+            private float price;
 
             @Schema(description = "Type of parking", example = "visitor")
             private String parkingType;
@@ -37,17 +37,17 @@ public class AvailableSpotResponse {
         }
 
         @Schema(description = "Lot ID", example = "0")
-        private String lid;
+        private int lid;
 
         @Schema(description = "Number of likes for the lot", example = "20")
-        private String likeNum;
+        private int likeNum;
 
         @Schema(description = "List of parking spots in the lot")
-        private List<ParkingSpot> spots;
+        public List<ParkingSpot> spots;
     }
 
     @Schema(description = "List of available parking lots")
-    private List<ParkingLot> available_lots;
+    public List<ParkingLot> available_lots;
 
 }
 
