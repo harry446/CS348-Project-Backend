@@ -27,8 +27,8 @@ public class BookingHistoryController {
     private BookingHistory bookingHistory;
 
     @PostMapping("/bookingHistory")
-    @Operation(summary = "Retrieve booking history", description = "Get booking history for a user, optionally sorted by price.",
-            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Information needed to retrieve past bookings",
+    @Operation(summary = "Retrieve booking history", description = "Get booking history for a user, optionally sorted by price. Or get all current/upcoming bookings",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Information needed to retrieve bookings",
                     required = true,
                     content = @Content(
                             schema = @Schema(implementation = BookingHistoryRequest.class),
