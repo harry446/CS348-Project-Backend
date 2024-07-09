@@ -59,6 +59,12 @@ public class BookingHistoryController {
 
             return new ResponseEntity(res, HttpStatus.OK);
         }
+        else if (historyRequest.isUpcomingOnly()) {
+            List<BookingHistoryResponse> res = bookingHistory.bookingHistory_upcoming(uid);
+            System.out.println("Booking history retrieved for user: " + uid + ", upcoming only");
+
+            return new ResponseEntity(res, HttpStatus.OK);
+        }
         else {
             List<BookingHistoryResponse> res = bookingHistory.bookingHistory(uid);
             System.out.println("Booking history retrieved for user: " + uid);
