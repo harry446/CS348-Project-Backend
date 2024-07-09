@@ -103,11 +103,18 @@ Content: "Booking canceled for user 2, with bid: 8
 ### 3. Retrieving Booking History
 - Endpoint: /bookingHistory
 - Method: POST
-- Description: Retrieve the booking history for a user, with options to sort the results by price in ascending or descending order.
+- Description: Retrieve the booking history for a user, with options to sort the results by price in ascending or descending order, or optionally only select current/upcoming bookings.
 - Request Payload Example (without sorting):
 ```
 {
     "uid": 4
+}
+```
+- Request Payload Example (with only current/upcoming bookings):
+```
+{
+    "uid": 4,
+    "upcomingOnly": true
 }
 ```
 - Request Payload Example (with sorting based on price in DESC order):
