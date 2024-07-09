@@ -31,6 +31,6 @@ UPDATE users SET booking_num = 3 WHERE uid = 6;
 INSERT INTO bookings (bid, uid, lid, sid, create_time, start_time, end_time, price, status, liked)
 VALUES 
 (10, 22, 4, 9, '2024-06-24 17:35:00', '2024-06-25 15:30:00', '2024-06-25 19:00:00', 5.5, 1, 1),
-(10, 22, 4, 10, '2024-06-24 17:55:00', '2024-06-25 15:30:00', '2024-06-25 19:00:00', 5.5, 1, 1);
+(11, 22, 4, 10, '2024-06-24 17:55:00', '2024-06-25 15:30:00', '2024-06-25 19:00:00', 5.5, 1, 1);
 UPDATE users SET booking_num = 2 WHERE uid = 22;
 UPDATE lots SET like_num = like_num+1 WHERE lid = 4;
