@@ -13,20 +13,20 @@ VALUES
 (5, 20, 4, 3, '2024-06-24 18:35:40', '2024-06-25 15:30:00', '2024-06-25 16:30:00', 0, 0, 0),
 (6, 20, 4, 3, '2024-06-24 19:35:00', '2024-06-25 15:30:00', '2024-06-25 18:00:00', 0, 1, 0);
 
-UPDATE users SET booking_num = 3 WHERE uid = 20;
+UPDATE users SET booking_num = 2 WHERE uid = 20;
 
 
 INSERT INTO bookings (bid, uid, lid, sid, create_time, start_time, end_time, price, status, liked)
 VALUES 
 (7, 24, 4, 4, '2024-06-24 17:35:00', '2024-06-25 15:30:00', '2024-06-25 19:00:00', 0, 1, 0);
-UPDATE users SET booking_num = 3 WHERE uid = 24;
+UPDATE users SET booking_num = 1 WHERE uid = 24;
 
 
 INSERT INTO bookings (bid, uid, lid, sid, create_time, start_time, end_time, price, status, liked)
 VALUES 
 (8, 6, 4, 7, '2024-06-24 17:55:00', '2024-06-29 15:30:00', '2024-06-29 19:00:00', 0, 1, 0),
 (9, 6, 4, 8, '2024-06-24 17:58:00', '2024-06-25 15:30:00', '2024-06-25 19:00:00', 5.5, 1, 0);
-UPDATE users SET booking_num = 3 WHERE uid = 6;
+UPDATE users SET booking_num = 2 WHERE uid = 6;
 
 INSERT INTO bookings (bid, uid, lid, sid, create_time, start_time, end_time, price, status, liked)
 VALUES 
