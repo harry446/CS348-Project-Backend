@@ -104,16 +104,16 @@ def generate_parking_spots(lots_df):
     return pd.DataFrame(parking_spots, columns=['lid', 'sid', 'parking_type', 'latitude', 'longitude', 'max_stay', 'price'])
 
 # Load the lots data
-file_path = '/Users/lilywang/Desktop/lots.xlsx'
+file_path = '/yourdirectory/campuslots.xlsx'
 lots_df = pd.read_excel(file_path)
 
 # Generate the parking spots data
 parking_spots_df = generate_parking_spots(lots_df)
 
-output_file_path1 = '/Users/lilywang/Desktop/spots.txt'
+output_file_path1 = '/yourdirectory/spots.txt'
 parking_spots_df.to_csv(output_file_path1, sep=',', index=False)
 
-output_file_path2 = '/Users/lilywang/Desktop/lots.txt'
+output_file_path2 = '/yourdirectory/lots.txt'
 lots_df.to_csv(output_file_path2, sep=',', index=False)
 # Display the generated parking spots data
 parking_spots_df.head()
