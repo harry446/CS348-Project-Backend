@@ -34,10 +34,11 @@ Ensure Maven is rebuild after clean install.
 
 This section provides instructions on how to generate the production dataset and load it into the database.
 
-1. Download `campuslots.xlsx`, `UW_lots_spots_gen.py`, and `Users_PH_CW_lots_spots_gen.ipynb`.
-2. Run the two Python scripts.
-3. After getting 4 text files (which can also be found in the repository), download `production_populate.sql`.
-4. Replace the directories in the SQL script to where you saved your text files, and run the SQL script.
+1. Download `requirements.txt`, `campuslots.xlsx`, `UW_lots_spots_gen.py`, and `Users_PH_CW_lots_spots_gen.ipynb`.
+2. Run `pip install -r requirements.txt` to ensure all dependencies are installed.
+3. Run the two Python scripts.
+4. After getting 4 text files (which can also be found in the repository), download `production_populate.sql`.
+5. Replace the directories in the SQL script to where you saved your text files, and run the SQL script.
 
 ---
 
