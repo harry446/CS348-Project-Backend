@@ -37,5 +37,5 @@ UPDATE lots SET like_num = like_num+1 WHERE lid = 2 AND lid IN
 (SELECT lid FROM Bookings WHERE uid = 3 AND status = True AND end_time < CURRENT_TIMESTAMP AND liked = False);
 UPDATE bookings SET liked = True WHERE uid = 3 AND lid = 2 AND status = True AND end_time < CURRENT_TIMESTAMP;
 
--- feature 5: user login
+-- feature 6: user login
 SELECT COUNT(*) FROM users WHERE username ='student1' AND password = 'iamstudent';
