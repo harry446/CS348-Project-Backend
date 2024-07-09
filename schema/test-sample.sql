@@ -8,7 +8,7 @@ UPDATE users SET booking_num = booking_num + 1 WHERE uid = 4;
 
 -- feature 2: cancel a booking
 -- assuming user with uid=4 made a valid booking with bid 7
-UPDATE bookings SET status = 0 WHERE uid = 4 AND bid = 7;
+UPDATE bookings SET status = 0 WHERE bid = 7;
 UPDATE users SET booking_num = booking_num -  1 WHERE uid = 4;
 
 -- feature 3: list booking history
