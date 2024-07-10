@@ -7,14 +7,14 @@ import lombok.Setter;
 @Setter
 public class BookingHistoryRequest {
     private int uid;
-    private boolean upcomingOnly;
+//    private boolean upcomingOnly;
     private boolean priceAsc;
     private boolean priceDesc;
     // other sorting requirements...
 
     public boolean isValid() {
         int trueCount = 0;
-        if (upcomingOnly) trueCount++;
+//        if (upcomingOnly) trueCount++;
         if (priceAsc) trueCount++;
         if (priceDesc) trueCount++;
         // add more in the future

@@ -27,7 +27,7 @@ public class BookingHistoryController {
     private BookingHistory bookingHistory;
 
     @PostMapping("/bookingHistory")
-    @Operation(summary = "Retrieve booking history", description = "Get booking history for a user, optionally sorted by price. Or get all current/upcoming bookings",
+    @Operation(summary = "Retrieve booking history", description = "Get booking history for a user, optionally sorted by price.",
             requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Information needed to retrieve bookings",
                     required = true,
                     content = @Content(
@@ -59,12 +59,12 @@ public class BookingHistoryController {
 
             return new ResponseEntity(res, HttpStatus.OK);
         }
-        else if (historyRequest.isUpcomingOnly()) {
-            List<BookingHistoryResponse> res = bookingHistory.bookingHistory_upcoming(uid);
-            System.out.println("Booking history retrieved for user: " + uid + ", upcoming only");
-
-            return new ResponseEntity(res, HttpStatus.OK);
-        }
+//        else if (historyRequest.isUpcomingOnly()) {
+//            List<BookingHistoryResponse> res = bookingHistory.bookingHistory_upcoming(uid);
+//            System.out.println("Booking history retrieved for user: " + uid + ", upcoming only");
+//
+//            return new ResponseEntity(res, HttpStatus.OK);
+//        }
         else {
             List<BookingHistoryResponse> res = bookingHistory.bookingHistory(uid);
             System.out.println("Booking history retrieved for user: " + uid);
