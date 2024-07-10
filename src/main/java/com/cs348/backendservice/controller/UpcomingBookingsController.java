@@ -13,10 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,7 +23,7 @@ public class UpcomingBookingsController {
     @Autowired
     private UpcomingBookings upcomingBookings;
 
-    @PostMapping("/bookingHistory")
+    @GetMapping("/upcomingBookings")
     @Operation(summary = "Retrieve booking history", description = "Get booking history for a user, optionally sorted by price.",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Upcoming booking history retrieved successfully",
