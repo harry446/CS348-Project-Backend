@@ -9,6 +9,7 @@ public class MakingBookingRequest {
     private int uid;
     private int lid;
     private int sid;
+    private float price;
     private String startYear;
     private String startMonth;
     private String startDate;

@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @RestController
 public class MakeBookingController {
 
-    final double PRICE = 1.50;      // TODO: get price according to sid
+//    final double PRICE = 1.50;      // TODO: get price according to sid
 
     @Autowired
     private MakeBooking makeBooking;
@@ -37,6 +37,7 @@ public class MakeBookingController {
                                     "    \"uid\": 2,\n" +
                                     "    \"lid\": 1,\n" +
                                     "    \"sid\": 3,\n" +
+                                    "    \"price\": 1.5,\n" +
                                     "    \"startYear\": \"2024\",\n" +
                                     "    \"startMonth\": \"06\",\n" +
                                     "    \"startDate\": \"14\",\n" +
@@ -60,7 +61,7 @@ public class MakeBookingController {
                 bookingRequest.getEndHour(), bookingRequest.getEndMinute());
 
         makeBooking.insertRow(bookingRequest.getUid(), bookingRequest.getLid(), bookingRequest.getSid(),
-                start_time, end_time, PRICE);
+                start_time, end_time, bookingRequest.getPrice());
 
         return new ResponseEntity("Booking created for user " + bookingRequest.getUid() + " at lot " + bookingRequest.getLid() +
                 " and spot " + bookingRequest.getSid() + ". From " + start_time + " to " + end_time
