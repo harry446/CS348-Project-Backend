@@ -15,6 +15,8 @@ public class AvailableSpotService {
     @Autowired
     private AvailableSpot availableSpots;
     public AvailableSpotResponse listAvailableSpots (int uid, List<String> location, String startTime, String endTime, float duration, boolean freeOnly) throws Exception {
+        availableSpots.trivialUpdate(uid);
+
         if (availableSpots.getCurBookingCount(uid) >= 3) {     // == 3 is enough
             throw new MaximumBookingExceededException("User exceeded maximum booking limit, UID: " + uid);
         }

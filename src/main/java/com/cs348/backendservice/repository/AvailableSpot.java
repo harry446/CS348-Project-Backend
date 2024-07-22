@@ -20,6 +20,33 @@ public class AvailableSpot {
     @PersistenceContext
     private EntityManager entityManager;
 
+    public void trivialUpdate(int uid) {
+        Connection connection = null;
+        PreparedStatement ps = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(constant.url, constant.username, constant.password);
+            connection.setAutoCommit(false); // Start transaction
+
+            String query = "UPDATE users SET uid=uid WHERE uid=?;";
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, uid);
+
+            ps.executeUpdate();
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            try {
+                if (connection != null) connection.rollback(); // Roll back transaction on error
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } finally {
+            if (ps != null) try { ps.close(); } catch (SQLException e) { e.printStackTrace(); }
+            if (connection != null) try { connection.close(); } catch (SQLException e) { e.printStackTrace(); }
+        }
+    }
     public int getCurBookingCount(int uid) throws UserNotFoundException {
         Connection connection = null;
         PreparedStatement ps = null;
