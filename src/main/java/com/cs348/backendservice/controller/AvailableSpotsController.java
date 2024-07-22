@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class AvailableSpotsController {
     @Autowired
@@ -59,7 +61,7 @@ public class AvailableSpotsController {
     public ResponseEntity<?> availableSpotsHandler(@RequestBody AvailableSpotRequest spotsRequest) {
 
         int uid = spotsRequest.getUid();
-        String location = spotsRequest.getLocation();
+        List<String> location = spotsRequest.getLocation();
         String startTime = tools.convertToTime(spotsRequest.getStartYear(), spotsRequest.getStartMonth(), spotsRequest.getStartDate(),
                 spotsRequest.getStartHour(), spotsRequest.getStartMinute());
         String endTime = tools.convertToTime(spotsRequest.getEndYear(), spotsRequest.getEndMonth(), spotsRequest.getEndDate(),
@@ -78,7 +80,7 @@ public class AvailableSpotsController {
         } catch (MaximumBookingExceededException maximumExceededException) {
             return new ResponseEntity(maximumExceededException.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         } catch (Exception e) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

@@ -3,11 +3,13 @@ package com.cs348.backendservice.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class AvailableSpotRequest {
     private int uid;
-    private String location;
+    private List<String> location;
     private String startYear;
     private String startMonth;
     private String startDate;
