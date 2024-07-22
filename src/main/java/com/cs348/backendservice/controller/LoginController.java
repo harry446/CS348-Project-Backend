@@ -2,6 +2,7 @@ package com.cs348.backendservice.controller;
 
 import com.cs348.backendservice.exceptions.UserNotFoundException;
 import com.cs348.backendservice.exceptions.WrongPasswordException;
+import com.cs348.backendservice.model.LoginResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -33,10 +34,10 @@ public class LoginController {
                             content = @Content(mediaType = "String",
                                     examples = @ExampleObject(value = "Wrong username or password")))
             })
-    public ResponseEntity<String> loginHandler(@RequestParam String username, @RequestParam String password) {
+    public ResponseEntity<LoginResponse> loginHandler(@RequestParam String username, @RequestParam String password) {
         try {
-            l.auth(username, password);
-            return new ResponseEntity("password is correct", HttpStatus.OK);
+            LoginResponse r = l.auth(username, password);
+            return new ResponseEntity(r, HttpStatus.OK);
         } catch (UserNotFoundException notFoundException) {
             return new ResponseEntity(notFoundException.getMessage(), HttpStatus.NOT_FOUND);
         } catch (WrongPasswordException wrongPasswordException) {
