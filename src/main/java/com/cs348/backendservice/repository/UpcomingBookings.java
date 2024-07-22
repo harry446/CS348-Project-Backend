@@ -22,10 +22,11 @@ public class UpcomingBookings {
                 "SELECT l.area, l.address, l.lot_name, s.parking_type, " +
                 "b.create_time, b.start_time, b.end_time, b.price, " +
                 "CASE WHEN (b.status=1 AND b.end_time < CURRENT_TIMESTAMP) THEN 'expired' " +
-                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, b.bid " +
+                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, b.bid, u.uid " +
                 "FROM bookings b " +
                 "JOIN lots l ON b.lid = l.lid " +
                 "JOIN spots s ON b.lid = s.lid AND b.sid = s.sid " +
+                "JOIN users u ON b.uid = u.uid " +
                 "WHERE b.uid = :uid AND b.start_time > CURRENT_TIMESTAMP AND b.status != 0) " +
                 "SELECT * FROM temp ORDER BY start_time ASC";
 
@@ -46,7 +47,44 @@ public class UpcomingBookings {
                     (Float) row[7],
                     (String) row[8],
                     (boolean) row[9],
-                    (int) row[10]
+                    (int) row[10],
+                    (int) row[11]
+            ));
+        }
+        return responses;
+    }
+
+    public List<UpcomingBookingsResponse> upcomingBookingsAdmin() {
+        String sql = "WITH temp AS (" +
+                "SELECT l.area, l.address, l.lot_name, s.parking_type, " +
+                "b.create_time, b.start_time, b.end_time, b.price, " +
+                "CASE WHEN (b.status=1 AND b.end_time < CURRENT_TIMESTAMP) THEN 'expired' " +
+                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, b.bid, u.uid " +
+                "FROM bookings b " +
+                "JOIN lots l ON b.lid = l.lid " +
+                "JOIN spots s ON b.lid = s.lid AND b.sid = s.sid " +
+                "JOIN users u ON b.uid = u.uid " +
+                "WHERE b.start_time > CURRENT_TIMESTAMP AND b.status != 0) " +
+                "SELECT * FROM temp ORDER BY start_time ASC";
+
+        Query query = entityManager.createNativeQuery(sql);
+        List<Object[]> result = query.getResultList();
+
+        List<UpcomingBookingsResponse> responses = new ArrayList<>();
+        for (Object[] row : result) {
+            responses.add(new UpcomingBookingsResponse(
+                    (String) row[0],
+                    (String) row[1],
+                    (String) row[2],
+                    (String) row[3],
+                    (Timestamp) row[4],
+                    (Timestamp) row[5],
+                    (Timestamp) row[6],
+                    (Float) row[7],
+                    (String) row[8],
+                    (boolean) row[9],
+                    (int) row[10],
+                    (int) row[11]
             ));
         }
         return responses;

@@ -1,5 +1,6 @@
 package com.cs348.backendservice.controller;
 
+import com.cs348.backendservice.constants.AdminConstants;
 import com.cs348.backendservice.model.BookingHistoryRequest;
 import com.cs348.backendservice.model.BookingHistoryResponse;
 import com.cs348.backendservice.model.UpcomingBookingsResponse;
@@ -23,8 +24,11 @@ public class UpcomingBookingsController {
     @Autowired
     private UpcomingBookings upcomingBookings;
 
+    @Autowired
+    private AdminConstants admins;
+
     @GetMapping("/upcomingBookings")
-    @Operation(summary = "Retrieve booking history", description = "Get booking history for a user, optionally sorted by price.",
+    @Operation(summary = "Retrieve upcoming bookings", description = "Get upcoming bookings for a user",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Upcoming booking history retrieved successfully",
                             content = @Content(mediaType = "application/json",
@@ -32,7 +36,11 @@ public class UpcomingBookingsController {
                     @ApiResponse(responseCode = "400", description = "Invalid request parameters")
             })
     public ResponseEntity<?> UpcomingBookingsHandler(@RequestParam int uid) {
-
+        if (admins.adminUID.contains(uid)) {
+            List<UpcomingBookingsResponse> res = upcomingBookings.upcomingBookingsAdmin();
+            System.out.println("Booking history retrieved for admin: " + uid + ", upcoming only");
+            return new ResponseEntity(res, HttpStatus.OK);
+        }
         List<UpcomingBookingsResponse> res = upcomingBookings.upcomingBookings(uid);
         System.out.println("Booking history retrieved for user: " + uid + ", upcoming only");
         return new ResponseEntity(res, HttpStatus.OK);

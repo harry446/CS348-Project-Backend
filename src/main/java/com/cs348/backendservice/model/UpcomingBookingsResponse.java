@@ -42,4 +42,7 @@ public class UpcomingBookingsResponse {
 
     @Schema(description = "Booking id of the booking", example = "2")
     private int bid;
+
+    @Schema(description = "uid of the user that made the booking", example = "2")
+    private int uid;
 }
