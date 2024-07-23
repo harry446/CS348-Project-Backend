@@ -1,19 +1,11 @@
 package com.cs348.backendservice.repository;
 
-import com.cs348.backendservice.constants.DatabaseConstants;
-import com.cs348.backendservice.model.BookingHistoryRequest;
 import com.cs348.backendservice.model.BookingHistoryResponse;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
-//import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,36 +16,25 @@ public class BookingHistory {
     private EntityManager entityManager;
 
     public List<BookingHistoryResponse> bookingHistory(int uid) {
-        String sql = "SELECT l.area, l.address, l.lot_name, s.parking_type, " +
+        String sql = "WITH temp AS (" +
+                "SELECT l.area, l.address, l.lot_name, s.parking_type, " +
                 "b.create_time, b.start_time, b.end_time, b.price, " +
                 "CASE WHEN (b.status=1 AND b.end_time < CURRENT_TIMESTAMP) THEN 'expired' " +
-                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked " +
-                "FROM bookings b JOIN lots l ON b.lid = l.lid " +
+                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, l.like_num  " +
+                "FROM bookings b " +
+                "JOIN lots l ON b.lid = l.lid " +
                 "JOIN spots s ON b.lid = s.lid AND b.sid = s.sid " +
-                "WHERE b.uid = :uid";
+                "WHERE b.uid = :uid) " +
+                "SELECT * FROM temp ORDER BY start_time DESC";
         return getBookingHistory(sql, uid);
     }
-
-//    public List<BookingHistoryResponse> bookingHistory_upcoming(int uid) {
-//        String sql = "WITH temp AS (" +
-//                "SELECT l.area, l.address, l.lot_name, s.parking_type, " +
-//                "b.create_time, b.start_time, b.end_time, b.price, " +
-//                "CASE WHEN (b.status=1 AND b.end_time < CURRENT_TIMESTAMP) THEN 'expired' " +
-//                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, b.bid " +
-//                "FROM bookings b " +
-//                "JOIN lots l ON b.lid = l.lid " +
-//                "JOIN spots s ON b.lid = s.lid AND b.sid = s.sid " +
-//                "WHERE b.uid = :uid AND b.start_time > CURRENT_TIMESTAMP AND b.status != 0) " +
-//                "SELECT * FROM temp ORDER BY start_time ASC";
-//        return getBookingHistory(sql, uid);
-//    }
 
     public List<BookingHistoryResponse> bookingHistory_priceDesc(int uid) {
         String sql = "WITH temp AS (" +
                 "SELECT l.area, l.address, l.lot_name, s.parking_type, " +
                 "b.create_time, b.start_time, b.end_time, b.price, " +
                 "CASE WHEN (b.status=1 AND b.end_time < CURRENT_TIMESTAMP) THEN 'expired' " +
-                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked " +
+                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, l.like_num  " +
                 "FROM bookings b " +
                 "JOIN lots l ON b.lid = l.lid " +
                 "JOIN spots s ON b.lid = s.lid AND b.sid = s.sid " +
@@ -67,12 +48,40 @@ public class BookingHistory {
                 "SELECT l.area, l.address, l.lot_name, s.parking_type, " +
                 "b.create_time, b.start_time, b.end_time, b.price, " +
                 "CASE WHEN (b.status=1 AND b.end_time < CURRENT_TIMESTAMP) THEN 'expired' " +
-                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked " +
+                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, l.like_num  " +
                 "FROM bookings b " +
                 "JOIN lots l ON b.lid = l.lid " +
                 "JOIN spots s ON b.lid = s.lid AND b.sid = s.sid " +
                 "WHERE b.uid = :uid) " +
                 "SELECT * FROM temp ORDER BY price ASC";
+        return getBookingHistory(sql, uid);
+    }
+
+    public List<BookingHistoryResponse> bookingHistory_likeNumDesc(int uid) {
+        String sql = "WITH temp AS (" +
+                "SELECT l.area, l.address, l.lot_name, s.parking_type, " +
+                "b.create_time, b.start_time, b.end_time, b.price, " +
+                "CASE WHEN (b.status=1 AND b.end_time < CURRENT_TIMESTAMP) THEN 'expired' " +
+                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, l.like_num " +
+                "FROM bookings b " +
+                "JOIN lots l ON b.lid = l.lid " +
+                "JOIN spots s ON b.lid = s.lid AND b.sid = s.sid " +
+                "WHERE b.uid = :uid) " +
+                "SELECT * FROM temp ORDER BY like_num DESC";
+        return getBookingHistory(sql, uid);
+    }
+
+    public List<BookingHistoryResponse> bookingHistory_likeNumAsc(int uid) {
+        String sql = "WITH temp AS (" +
+                "SELECT l.area, l.address, l.lot_name, s.parking_type, " +
+                "b.create_time, b.start_time, b.end_time, b.price, " +
+                "CASE WHEN (b.status=1 AND b.end_time < CURRENT_TIMESTAMP) THEN 'expired' " +
+                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, l.like_num " +
+                "FROM bookings b " +
+                "JOIN lots l ON b.lid = l.lid " +
+                "JOIN spots s ON b.lid = s.lid AND b.sid = s.sid " +
+                "WHERE b.uid = :uid) " +
+                "SELECT * FROM temp ORDER BY like_num ASC";
         return getBookingHistory(sql, uid);
     }
 
@@ -94,7 +103,8 @@ public class BookingHistory {
                     (Timestamp) row[6],
                     (Float) row[7],
                     (String) row[8],
-                    (boolean) row[9]
+                    (boolean) row[9],
+                    (int) row[10]
             ));
         }
         return responses;
@@ -102,26 +112,3 @@ public class BookingHistory {
 
 
 }
-
-
-//public interface BookingHistory extends JpaRepository<BookingHistoryResponse, Integer> {
-//
-//    @Query(value = "SELECT l.area, l.address, l.lot_name, s.parking_type, " +
-//            "b.create_time, b.start_time, b.end_time, b.price, " +
-//            "CASE WHEN (b.status=1 AND b.end_time < CURRENT_TIMESTAMP) THEN 'expired' " +
-//            "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status " +
-//            "FROM bookings b JOIN lots l ON b.lid = l.lid " +
-//            "JOIN spots s ON b.lid = s.lid AND b.sid = s.sid " +
-//            "WHERE b.uid = :uid", nativeQuery = true)
-//    List<BookingHistoryResponse> bookingHistory(@Param("uid") int uid);
-//
-//    @Query(value = "WITH temp AS (SELECT l.area, l.address, l.lot_name, s.parking_type, " +
-//            "b.create_time, b.start_time, b.end_time, b.price, " +
-//            "CASE WHEN (b.status=1 AND b.end_time < CURRENT_TIMESTAMP) THEN 'expired' " +
-//            "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status " +
-//            "FROM bookings b JOIN lots l ON b.lid = l.lid " +
-//            "JOIN spots s ON b.lid = s.lid AND b.sid = s.sid " +
-//            "WHERE b.uid = :uid) " +
-//            "SELECT * FROM temp ORDER BY price DESC", nativeQuery = true)
-//    List<BookingHistoryResponse> bookingHistory_priceDesc(@Param("uid") int uid);
-//}

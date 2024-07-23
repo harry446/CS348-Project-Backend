@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -72,6 +74,9 @@ public class AvailableSpotsController {
                 spotsRequest.getEndHour(), spotsRequest.getEndMinute());
         boolean isFreeOnly = spotsRequest.isFreeOnly();
 
+        if (location.isEmpty()) {
+            location = new ArrayList<>(Arrays.asList("DC", "STC"));
+        }
         try {
             AvailableSpotResponse res = availableSpotsService.listAvailableSpots(uid, location, startTime, endTime, duration, isFreeOnly);
             return new ResponseEntity(res, HttpStatus.OK);

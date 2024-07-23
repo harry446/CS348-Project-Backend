@@ -11,12 +11,16 @@ public class BookingHistoryRequest {
     private boolean priceAsc;
     private boolean priceDesc;
     // other sorting requirements...
+    private boolean likeNumAsc;
+    private boolean likeNumDesc;
 
     public boolean isValid() {
         int trueCount = 0;
 //        if (upcomingOnly) trueCount++;
         if (priceAsc) trueCount++;
         if (priceDesc) trueCount++;
+        if (likeNumAsc) trueCount++;
+        if (likeNumDesc) trueCount++;
         // add more in the future
 
         return trueCount <= 1;

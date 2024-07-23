@@ -43,34 +43,8 @@ public class BookingHistoryResponse {
 
     @Schema(description = "Indicates whether the user has liked this parking spot", example = "true")
     private boolean liked;
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private int id;
-//
-//    @Column(name = "area")
-//    private String area;
-//
-//    @Column(name = "address")
-//    private String address;
-//
-//    @Column(name = "lot_name")
-//    private String lotName;
-//
-//    @Column(name = "parking_type")
-//    private String parkingType;
-//
-//    @Column(name = "create_time")
-//    private Timestamp createTime;
-//
-//    @Column(name = "start_time")
-//    private Timestamp startTime;
-//
-//    @Column(name = "end_time")
-//    private Timestamp endTime;
-//
-//    @Column(name = "price")
-//    private float price;
-//
-//    @Column(name = "status")
-//    private String status;
+
+    @Schema(description = "number of likes received by the parking lot", example = "2")
+    private int likeNum;
+
 }

@@ -27,11 +27,12 @@ public class AvailableSpot {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(constant.url, constant.username, constant.password);
-            connection.setAutoCommit(false); // Start transaction
+//            connection.setAutoCommit(false); // Start transaction
 
-            String query = "UPDATE users SET uid=uid WHERE uid=?;";
+            String query = "UPDATE users SET booking_num = (SELECT COUNT(*) FROM bookings WHERE uid=? AND end_time>CURRENT_TIMESTAMP) WHERE uid=?;";
             ps = connection.prepareStatement(query);
             ps.setInt(1, uid);
+            ps.setInt(2, uid);
 
             ps.executeUpdate();
 
