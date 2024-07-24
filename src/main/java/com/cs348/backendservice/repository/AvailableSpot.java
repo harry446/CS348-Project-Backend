@@ -93,7 +93,7 @@ public class AvailableSpot {
                     "(s.sid, l.lid) NOT IN (SELECT sid, lid FROM bookings WHERE GREATEST(start_time, ?3) <= LEAST(end_time, ?4) AND status = 1) AND " +
                     "(s.parking_type != 'accessible' OR u.is_accessible = TRUE) AND " +
                     "(s.parking_type != 'permit' OR EXISTS (SELECT * FROM permit_holders p WHERE p.uid = ?5 AND p.expiry_date >= ?6)) AND " +
-                    "(s.max_stay >= ?7) AND " +
+                    "(IFNULL(s.max_stay, 168) >= ?7) AND " +
                     "(s.parking_type != ?8) " +
                 "ORDER BY l.lid ASC;";
 
