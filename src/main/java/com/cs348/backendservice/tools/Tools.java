@@ -10,17 +10,6 @@ public class Tools {
 
     public float convertDuration(String startYear, String startMonth, String startDate, String startHour, String startMin,
                                  String endYear, String endMonth, String endDate, String endHour, String endMin) {
-//        float syear = Float.parseFloat(startYear);
-//        float smonth = Float.parseFloat(startMonth);
-//        float sdate = Float.parseFloat(startDate);
-//        float shour = Float.parseFloat(startHour);
-//        float smin = Float.parseFloat(startMin);
-//        float eyear = Float.parseFloat(endYear);
-//        float emonth = Float.parseFloat(endMonth);
-//        float edate = Float.parseFloat(endDate);
-//        float ehour = Float.parseFloat(endHour);
-//        float emin = Float.parseFloat(endMin);
-
         long syear = Long.parseLong(startYear);
         long smonth = Long.parseLong(startMonth);
         long sdate = Long.parseLong(startDate);

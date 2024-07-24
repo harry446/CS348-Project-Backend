@@ -33,9 +33,6 @@ public class Login {
                 }
             }
 
-
-//            connection.commit(); // Commit transaction
-
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         } finally {
