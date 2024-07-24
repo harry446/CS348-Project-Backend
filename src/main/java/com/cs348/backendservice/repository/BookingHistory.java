@@ -20,7 +20,7 @@ public class BookingHistory {
                 "SELECT l.area, l.address, l.lot_name, s.parking_type, " +
                 "b.create_time, b.start_time, b.end_time, b.price, " +
                 "CASE WHEN (b.status=1 AND b.end_time < CURRENT_TIMESTAMP) THEN 'expired' " +
-                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, l.like_num  " +
+                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, l.like_num, l.lid  " +
                 "FROM bookings b " +
                 "JOIN lots l ON b.lid = l.lid " +
                 "JOIN spots s ON b.lid = s.lid AND b.sid = s.sid " +
@@ -34,7 +34,7 @@ public class BookingHistory {
                 "SELECT l.area, l.address, l.lot_name, s.parking_type, " +
                 "b.create_time, b.start_time, b.end_time, b.price, " +
                 "CASE WHEN (b.status=1 AND b.end_time < CURRENT_TIMESTAMP) THEN 'expired' " +
-                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, l.like_num  " +
+                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, l.like_num, l.lid  " +
                 "FROM bookings b " +
                 "JOIN lots l ON b.lid = l.lid " +
                 "JOIN spots s ON b.lid = s.lid AND b.sid = s.sid " +
@@ -48,7 +48,7 @@ public class BookingHistory {
                 "SELECT l.area, l.address, l.lot_name, s.parking_type, " +
                 "b.create_time, b.start_time, b.end_time, b.price, " +
                 "CASE WHEN (b.status=1 AND b.end_time < CURRENT_TIMESTAMP) THEN 'expired' " +
-                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, l.like_num  " +
+                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, l.like_num, l.lid  " +
                 "FROM bookings b " +
                 "JOIN lots l ON b.lid = l.lid " +
                 "JOIN spots s ON b.lid = s.lid AND b.sid = s.sid " +
@@ -62,7 +62,7 @@ public class BookingHistory {
                 "SELECT l.area, l.address, l.lot_name, s.parking_type, " +
                 "b.create_time, b.start_time, b.end_time, b.price, " +
                 "CASE WHEN (b.status=1 AND b.end_time < CURRENT_TIMESTAMP) THEN 'expired' " +
-                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, l.like_num " +
+                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, l.like_num, l.lid " +
                 "FROM bookings b " +
                 "JOIN lots l ON b.lid = l.lid " +
                 "JOIN spots s ON b.lid = s.lid AND b.sid = s.sid " +
@@ -76,7 +76,7 @@ public class BookingHistory {
                 "SELECT l.area, l.address, l.lot_name, s.parking_type, " +
                 "b.create_time, b.start_time, b.end_time, b.price, " +
                 "CASE WHEN (b.status=1 AND b.end_time < CURRENT_TIMESTAMP) THEN 'expired' " +
-                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, l.like_num " +
+                "ELSE (CASE WHEN b.status=1 THEN 'booked' ELSE 'cancelled' END) END AS status, b.liked, l.like_num, l.lid " +
                 "FROM bookings b " +
                 "JOIN lots l ON b.lid = l.lid " +
                 "JOIN spots s ON b.lid = s.lid AND b.sid = s.sid " +
@@ -104,7 +104,8 @@ public class BookingHistory {
                     (Float) row[7],
                     (String) row[8],
                     (boolean) row[9],
-                    (int) row[10]
+                    (int) row[10],
+                    (int) row[11]
             ));
         }
         return responses;

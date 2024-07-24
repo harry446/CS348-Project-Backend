@@ -47,4 +47,7 @@ public class BookingHistoryResponse {
     @Schema(description = "number of likes received by the parking lot", example = "2")
     private int likeNum;
 
+    @Schema(description = "Lot ID", example = "2")
+    private int lid;
+
 }
