@@ -2,7 +2,8 @@ LOAD DATA LOCAL INFILE '/path/to/your/user.txt'
 INTO TABLE users
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
-(uid,username,password,email,phone,identity,booking_num,is_accessible);
+(uid,username,password,email,phone,identity,booking_num,is_accessible)
+SET phone = NULLIF(phone, 'NULL');
 
 LOAD DATA LOCAL INFILE '/path/to/your/p_holders.txt'
 INTO TABLE permit_holders
