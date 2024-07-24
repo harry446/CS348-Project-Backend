@@ -55,4 +55,41 @@ public class MakeBooking {
         }
     }
 
+    public int checkAvailability(int lid, int sid, String start_time, String end_time) {
+        Connection connection = null;
+        PreparedStatement ps = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            connection = DriverManager.getConnection(constant.url, constant.username, constant.password);
+
+            // update the like num
+            String query = "SELECT COUNT(*) as c \n" +
+                    "FROM bookings \n" +
+                    "WHERE lid = ? AND sid = ? AND GREATEST(start_time, ?) <= LEAST(end_time, ?) AND status = 1;";
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, lid);
+            ps.setInt(2, sid);
+            ps.setString(3, start_time);
+            ps.setString(4, end_time);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("c");
+                }
+            }
+
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (ps != null) ps.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return -1;
+    }
+
 }

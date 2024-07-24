@@ -60,6 +60,9 @@ public class MakeBookingController {
         String end_time = tools.convertToTime(bookingRequest.getEndYear(), bookingRequest.getEndMonth(), bookingRequest.getEndDate(),
                 bookingRequest.getEndHour(), bookingRequest.getEndMinute());
 
+        if (makeBooking.checkAvailability(bookingRequest.getLid(), bookingRequest.getSid(), start_time, end_time) != 0) {
+            return new ResponseEntity("Spot has been taken! uid: " + bookingRequest.getUid() + ", lid: " + bookingRequest.getLid() + ", sid: " + bookingRequest.getSid(), HttpStatus.NOT_ACCEPTABLE);
+        }
         makeBooking.insertRow(bookingRequest.getUid(), bookingRequest.getLid(), bookingRequest.getSid(),
                 start_time, end_time, bookingRequest.getPrice());
 
