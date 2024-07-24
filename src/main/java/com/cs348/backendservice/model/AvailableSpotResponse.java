@@ -39,6 +39,9 @@ public class AvailableSpotResponse {
         @Schema(description = "Lot ID", example = "0")
         private int lid;
 
+        @Schema(description = "Lot name", example = "DC")
+        private String lot_name;
+
         @Schema(description = "Number of likes for the lot", example = "20")
         private int likeNum;
 

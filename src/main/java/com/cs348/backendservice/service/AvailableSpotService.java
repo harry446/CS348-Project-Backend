@@ -30,13 +30,13 @@ public class AvailableSpotService {
             for (Object[] k : res1) {
                 if (lots.isEmpty()) {
                     List<AvailableSpotResponse.ParkingLot.ParkingSpot> s = new ArrayList<>();
-                    AvailableSpotResponse.ParkingLot l = new AvailableSpotResponse.ParkingLot((int) k[0], (int) k[1], s);
+                    AvailableSpotResponse.ParkingLot l = new AvailableSpotResponse.ParkingLot((int) k[0], (String) k[5], (int) k[1], s);
                     lots.add(l);
                 }
 
                 if (lots.get(lots.size()-1).getLid() != (int) k[0]) {       // new lot number
                     List<AvailableSpotResponse.ParkingLot.ParkingSpot> s = new ArrayList<>();
-                    AvailableSpotResponse.ParkingLot l = new AvailableSpotResponse.ParkingLot((int) k[0], (int) k[1], s);
+                    AvailableSpotResponse.ParkingLot l = new AvailableSpotResponse.ParkingLot((int) k[0], (String) k[5], (int) k[1], s);
                     lots.add(l);
                 }
 

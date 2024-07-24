@@ -87,7 +87,7 @@ public class AvailableSpot {
 
     public List<Object[]> getAvailable(int uid, String location, String start, String end, float duration, String type) {
 
-        String sql = "SELECT l.lid, l.like_num, s.sid, s.price, s.parking_type " +
+        String sql = "SELECT l.lid, l.like_num, s.sid, s.price, s.parking_type, l.lot_name " +
                 "FROM lots l, spots s, users u " +
                 "WHERE s.lid = l.lid AND l.lot_name = ?1 AND u.uid = ?2 AND " +
                     "(s.sid, l.lid) NOT IN (SELECT sid, lid FROM bookings WHERE GREATEST(start_time, ?3) <= LEAST(end_time, ?4) AND status = 1) AND " +
