@@ -52,13 +52,13 @@ public class AvailableSpotService {
                     }
                     boolean flag = false;
                     for (AvailableSpotResponse.ParkingLot.ParkingSpot s : l.spots) {
-                        if (s.getSid() == (int) k[2]) {
+                        if (s.getSid() == (int) k[1]) {
                             flag = true;
                             break;
                         }
                     }
                     if (!flag) {
-                        AvailableSpotResponse.ParkingLot.ParkingSpot s = new AvailableSpotResponse.ParkingLot.ParkingSpot((int) k[2], (float) k[3], (String) k[4], false);
+                        AvailableSpotResponse.ParkingLot.ParkingSpot s = new AvailableSpotResponse.ParkingLot.ParkingSpot((int) k[1], (float) k[2], (String) k[3], false);
                         l.spots.add(s);
                     }
                     break;

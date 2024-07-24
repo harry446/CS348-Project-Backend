@@ -113,7 +113,7 @@ public class AvailableSpot {
 
     public List<Object[]> getAll(String location) {
 
-        String sql = "SELECT l.lid, l.like_num, s.sid, s.price, s.parking_type " +
+        String sql = "SELECT l.lid, s.sid, s.price, s.parking_type " +
                 "FROM lots l, spots s " +
                 "WHERE s.lid = l.lid AND l.lot_name = ?1 " +
                 "ORDER BY l.lid ASC;";
