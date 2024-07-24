@@ -1,4 +1,4 @@
 bid	uid	lid	sid	create_time	start_time	end_time	price	status	liked
-2	2	1	2	2023-01-01 08:00:00	2023-01-01 08:30:00	2023-01-01 10:00:00	NULL	0	0
+3962	11	4	5	2024-05-24 18:35:40	2024-05-25 15:30:00	2024-05-27 16:30:00	0	0	1
 uid	username	password	email	phone	identity	booking_num	is_accessible
 11	whitemason	_qew.PO0=4A6TT	PxozcHk2qJd@hotmail.com	4192648189	student	2	0
