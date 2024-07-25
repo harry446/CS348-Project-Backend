@@ -37,8 +37,9 @@ This section provides instructions on how to generate the production dataset and
 1. Download `requirements.txt`, `campuslots.xlsx`, `UW_lots_spots_gen.py`, and `Users_PH_CW_lots_spots_gen.ipynb`.
 2. Run `pip install -r requirements.txt` to ensure all dependencies are installed.
 3. Run the two Python scripts.
-4. After getting 4 text files: `users.txt`, `p_holders.txt`, `lots.txt`, `allspots.txt` (which can also be found in the repository), download `production_populate.sql`.
-5. Replace the directories in the SQL script to where you saved your text files, and run the SQL script.
+4. After getting 4 text files: `users.txt`, `p_holders.txt`, `lots.txt`, `allspots.txt` (which can also be found in the repository), download `Exp_Booking_Gen.ipynb` and `production_populate.sql`.
+5. Run `Exp_Booking_Gen.ipynb` to get `expired_booking.txt` (which can also be found in the repository).
+6. Replace the directories in the `production_populate.sql` to where you saved your text files, and run the SQL script.
 
 ---
 
