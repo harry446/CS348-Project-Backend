@@ -33,7 +33,16 @@ public class MakeBooking {
             ps.setDouble(6, price);
             ps.executeUpdate();
 
+            String modifyQuery = "WITH temp AS (SELECT DISTINCT liked, (SELECT MAX(bid) FROM bookings) AS bid FROM bookings \n" +
+                    "WHERE uid=? AND lid=? ORDER BY liked DESC LIMIT 1) \n" +
+                    "UPDATE bookings SET liked = (SELECT liked FROM temp) WHERE bid = (SELECT bid FROM temp);";
+            ps = connection.prepareStatement(modifyQuery);
+            ps.setInt(1, uid);
+            ps.setInt(2, lid);
+            ps.executeUpdate();
+
             // Update user booking number
+            System.out.println("update book_num+1 for user " + uid);
             String updateQuery = "UPDATE users SET booking_num = booking_num + 1 WHERE uid = ?";
             ps = connection.prepareStatement(updateQuery);
             ps.setInt(1, uid);
@@ -63,10 +72,11 @@ public class MakeBooking {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             connection = DriverManager.getConnection(constant.url, constant.username, constant.password);
 
+            System.out.println("end_time: " + end_time);
             // update the like num
             String query = "SELECT COUNT(*) as c \n" +
                     "FROM bookings \n" +
-                    "WHERE lid = ? AND sid = ? AND GREATEST(start_time, ?) <= LEAST(end_time, ?) AND status = 1;";
+                    "WHERE lid = ? AND sid = ? AND GREATEST(start_time, ?) < LEAST(end_time, ?) AND status = 1;";
             ps = connection.prepareStatement(query);
             ps.setInt(1, lid);
             ps.setInt(2, sid);

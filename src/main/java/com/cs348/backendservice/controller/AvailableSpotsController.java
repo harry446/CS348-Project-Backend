@@ -61,6 +61,7 @@ public class AvailableSpotsController {
                     @ApiResponse(responseCode = "404", description = "User not found")
             })
     public ResponseEntity<?> availableSpotsHandler(@RequestBody AvailableSpotRequest spotsRequest) {
+        System.out.println("available spot request received");
 
         int uid = spotsRequest.getUid();
         List<String> location = spotsRequest.getLocation();

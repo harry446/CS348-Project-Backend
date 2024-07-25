@@ -27,6 +27,7 @@ public class CancelBooking {
             ps.setInt(2, bid);
             ps.executeUpdate();
 
+            System.out.println("update book_num-1 for user " + uid);
             // Decrement the booking_num in users table
             String decrementBookingNumQuery = "UPDATE users SET booking_num = booking_num - 1 WHERE uid = ?";
             ps = connection.prepareStatement(decrementBookingNumQuery);

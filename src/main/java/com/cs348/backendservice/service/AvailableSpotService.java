@@ -23,11 +23,24 @@ public class AvailableSpotService {
 
         String parking_type = freeOnly ? "pay" : "random garbage value";
 
+        System.out.println("!");
+        System.out.println("uid: " + uid + ", duration: " + duration + ", parking_type" + parking_type);
+        System.out.println(startTime);
+        System.out.println(endTime);
+        System.out.println("!");
+
         List<AvailableSpotResponse.ParkingLot> lots = new ArrayList<>();
         for (String loc : location) {
+            System.out.println("loc!: " + loc);
             List<Object[]> res1 = availableSpots.getAvailable(uid, loc, startTime, endTime, duration, parking_type);
 
             for (Object[] k : res1) {
+                if ((int) k[0] == 1 && (int) k[2] == 4) {
+                    System.out.println("uid: " + uid + ", loc: " + loc + ", duration: " + duration + ", parking_type" + parking_type);
+                    System.out.println(startTime);
+                    System.out.println(endTime);
+                    System.out.println(k);
+                }
                 if (lots.isEmpty()) {
                     List<AvailableSpotResponse.ParkingLot.ParkingSpot> s = new ArrayList<>();
                     AvailableSpotResponse.ParkingLot l = new AvailableSpotResponse.ParkingLot((int) k[0], (String) k[5], (int) k[1], s);

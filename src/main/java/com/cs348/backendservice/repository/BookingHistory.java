@@ -93,6 +93,10 @@ public class BookingHistory {
 
         List<BookingHistoryResponse> responses = new ArrayList<>();
         for (Object[] row : result) {
+            float price = 0.0f;
+            if (row[7] != null) {
+                price = (Float) row[7];
+            }
             responses.add(new BookingHistoryResponse(
                     (String) row[0],
                     (String) row[1],
@@ -101,7 +105,7 @@ public class BookingHistory {
                     (Timestamp) row[4],
                     (Timestamp) row[5],
                     (Timestamp) row[6],
-                    (Float) row[7],
+                    price,
                     (String) row[8],
                     (boolean) row[9],
                     (int) row[10],
